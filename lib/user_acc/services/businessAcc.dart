@@ -35,7 +35,8 @@ Future<Object> loginBusinessAcc(String email, String password) async {
   }
 }
 
-Future<Object> registerBusinessAcc(String username, String email, String password) async {
+Future<Object> registerBusinessAcc(
+    String username, String email, String password) async {
   String token = await getToken();
   // Logger().d('token: $token');
 
@@ -46,7 +47,40 @@ Future<Object> registerBusinessAcc(String username, String email, String passwor
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token'
         },
-        body: jsonEncode({'username': username, 'email': email, 'password': password}));
+        body: jsonEncode(
+            {'username': username, 'email': email, 'password': password}));
+    final data = jsonDecode(response.body);
+    // Logger().d('Response: $data');
+
+    if (data['messages']['code'] == 0) {
+      final businessAcc = BusinessAccModel.fromJson(data['response']);
+      // Logger().d(data['response']);
+
+      return businessAcc;
+    } else {
+      Logger().e(data['messages']['message']);
+      return data['messages']['message'];
+    }
+  } catch (e) {
+    Logger().e(e);
+    return e.toString();
+  }
+}
+
+Future<Object> updateBusinessAcc(
+    String username, String email, String password) async {
+  String token = await getToken();
+  // Logger().d('token: $token');
+
+  try {
+    final url = Uri.parse('$baseUrl/update');
+    final response = await http.put(url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        },
+        body: jsonEncode(
+            {'username': username, 'email': email, 'password': password}));
     final data = jsonDecode(response.body);
     // Logger().d('Response: $data');
 

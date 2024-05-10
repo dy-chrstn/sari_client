@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
-Future <Object> loginPersonalAcc(String email, String password) async {
+Future<Object> loginPersonalAcc(String email, String password) async {
   String token = await getToken();
   // Logger().d('token: $token');
 
@@ -35,7 +35,8 @@ Future <Object> loginPersonalAcc(String email, String password) async {
   }
 }
 
-Future <PersonalAccModel> registerPersonalAcc(String owner, String name, int pin) async {
+Future<PersonalAccModel> registerPersonalAcc(
+    String owner, String name, int pin) async {
   String token = await getToken();
   Logger().d('token: $token');
 
@@ -65,26 +66,57 @@ Future <PersonalAccModel> registerPersonalAcc(String owner, String name, int pin
   }
 }
 
-Future <List<PersonalAccModel>> getPersonalAccList(String owner) async {
+Future<List<PersonalAccModel>> getPersonalAccList(String owner) async {
   String token = await getToken();
   Logger().d('token: $token');
 
   try {
     final url = Uri.parse('$baseUrl/profiles/$owner');
-    final response = await http.get(url,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token'
-        });
+    final response = await http.get(url, headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    });
     final data = jsonDecode(response.body);
     Logger().d('Response: $data');
 
     if (data['messages']['code'] == 0) {
       final personalAccList = <PersonalAccModel>[];
-      data['response'].forEach((e) => personalAccList.add(PersonalAccModel.fromJson(e)));
+      data['response']
+          .forEach((e) => personalAccList.add(PersonalAccModel.fromJson(e)));
       Logger().d(data['response']);
 
       return personalAccList;
+    } else {
+      Logger().e(data['messages']['message']);
+      return data['messages']['message'];
+    }
+  } catch (e) {
+    Logger().e(e);
+    throw e.toString();
+  }
+}
+
+Future<PersonalAccModel> updateProfile(
+    String owner, String name, int pin) async {
+  String token = await getToken();
+  Logger().d('token: $token');
+
+  try {
+    final url = Uri.parse('$baseUrl/updateProfileAcc/$owner');
+    final response = await http.put(url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        },
+        body: jsonEncode({'name': name, 'pin': pin}));
+    final data = jsonDecode(response.body);
+    Logger().d('Response: $data');
+
+    if (data['messages']['code'] == 0) {
+      final personalAcc = PersonalAccModel.fromJson(data['response']);
+      Logger().d(data['response']);
+
+      return personalAcc;
     } else {
       Logger().e(data['messages']['message']);
       return data['messages']['message'];
