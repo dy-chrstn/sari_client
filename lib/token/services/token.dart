@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
-Future<void> getToken() async {
+Future<String> getToken() async {
   final url = Uri.parse('$baseUrl/getToken');
 
   String basicAuth = 'Basic ${base64Encode(utf8.encode('$userAuth:$passwordAuth'))}';
@@ -18,15 +18,19 @@ Future<void> getToken() async {
     final data = jsonDecode(response.body);
 
     if(data['messages']['code'] == 0){
-      // Parse the token using TokenModel
         final tokenModel = TokenModel.fromJson(data['response']['token']);
-        // Access the token from the TokenModel object
+
         final token = tokenModel.token;
-        Logger().d('Token: $token');
+        // Logger().d('Token: $token');
+
+        return token;
     }else{
       Logger().e(data['messages']['message']);
+
+      return data['messages']['message'];
     }
   } catch (e) {
     Logger().e(e);
+    return e.toString();
   }
 }

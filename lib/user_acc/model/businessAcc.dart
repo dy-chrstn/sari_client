@@ -1,23 +1,20 @@
 
 class BusinessAccModel {
-  final String id;
+  final String userId;
   final String username;
   final String email;
-  final String password;
 
   BusinessAccModel({
-    required this.id,
+    required this.userId,
     required this.username,
     required this.email,
-    required this.password,
   });
 
   factory BusinessAccModel.fromJson(Map<String, dynamic> json) {
     return BusinessAccModel(
-      id: json['id'],
+      userId: json['userId'],
       username: json['username'],
       email: json['email'],
-      password: json['password'],
     );
   }
 }
