@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:sari/token/services/token.dart';
 import 'package:sari/user_acc/services/businessAcc.dart';
+import 'package:sari/user_acc/services/personalAcc.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -23,8 +24,8 @@ class _LoginState extends State<Login> {
       home: Scaffold(
         body: Center(
           child: ElevatedButton(
-            onPressed: () => registerBusinessAcc('test_username', 'test1@gmail.com', 'test1234'),
-            child: const Text('Register'),
+            onPressed: () => registerPersonalAcc('663e1f3ad2c7ff942479d6d8', 'christian', 1234),
+            child: const Text('Register Profile'),
           ),
         ),
       ),
