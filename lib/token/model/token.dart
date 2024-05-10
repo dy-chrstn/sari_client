@@ -5,9 +5,9 @@ class TokenModel{
     required this.token
   });
 
-  factory TokenModel.fromJson(Map<String, dynamic> json) {
+  factory TokenModel.fromJson(String json) {
     return TokenModel(
-      token: json['token'],
+      token: json,
     );
   }
 }

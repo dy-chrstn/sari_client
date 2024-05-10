@@ -18,8 +18,11 @@ Future<void> getToken() async {
     final data = jsonDecode(response.body);
 
     if(data['messages']['code'] == 0){
-      String token = data['response']['token'];
-      Logger().d(token);
+      // Parse the token using TokenModel
+        final tokenModel = TokenModel.fromJson(data['response']['token']);
+        // Access the token from the TokenModel object
+        final token = tokenModel.token;
+        Logger().d('Token: $token');
     }else{
       Logger().e(data['messages']['message']);
     }
