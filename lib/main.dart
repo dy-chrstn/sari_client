@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:sari/token/services/token.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const Login());
 }
 
@@ -18,7 +21,7 @@ class _LoginState extends State<Login> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
-          child: Text('Login'),
+          child: ElevatedButton(onPressed: getToken, child: Text('Get Token')),
         ),
       ),
     );
