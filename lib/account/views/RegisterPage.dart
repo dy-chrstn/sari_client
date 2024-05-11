@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sari/account/views/LoginPage.dart';
 import 'package:sari/utils/theme/colors.dart';
 import 'package:sari/utils/theme/typography.dart';
 
