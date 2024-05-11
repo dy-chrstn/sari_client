@@ -1,39 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sari/account/views/LoginPage.dart';
+import 'package:sari/account/views/ProfilesPage.dart';
+import 'package:sari/account/views/RegisterPage.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
   runApp(
-   const MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: Login(),
-    ),
+    Main(),
   );
 }
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Main extends StatefulWidget {
+  const Main({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Main> createState() => _MainState();
 }
 
-class _LoginState extends State<Login> {
+class _MainState extends State<Main> {
+  GoRouter router = GoRouter(
+    routes: [
+      GoRoute(path: '/', builder: (context, state) => const LoginPage()),
+      GoRoute(path: '/register', builder: (context, state) => const RegisterBusinessAcc()),
+      GoRoute(path: '/profiles', builder: (context, state) => const ProfilesPage()),
+    ]
+  );
+
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () => {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()))
-            },
-            child: const Text('Open Login Page'),
-          ),
-        ),
-      ),
+      routerConfig: router,
     );
   }
 }

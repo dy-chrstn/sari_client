@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sari/account/views/RegisterPage.dart';
 import 'package:sari/utils/theme/colors.dart';
 import 'package:sari/utils/theme/typography.dart';
@@ -65,11 +66,13 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: screenSize.height * 0.02,
               ),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 55,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      GoRouter.of(context).pushReplacement('/profiles');
+                    },
                     style: AppForm.darkButton,
                     child: const Text(
                       'LOGIN',
@@ -91,11 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                             fontWeight: FontWeight.bold),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const RegisterBusinessAcc()));
+                            GoRouter.of(context).push('/register');
                           },
                       )
                     ])),
