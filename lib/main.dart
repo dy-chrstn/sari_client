@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:sari/account/services/personalAcc.dart';
+import 'package:sari/account/views/LoginPage.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
-  runApp(const Login());
+  runApp(
+   const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Login(),
+    ),
+  );
 }
 
 class Login extends StatefulWidget {
@@ -22,8 +28,10 @@ class _LoginState extends State<Login> {
       home: Scaffold(
         body: Center(
           child: ElevatedButton(
-            onPressed: () => getPersonalAccList('663e1f3ad2c7ff942479d6d8'),
-            child: const Text('Get Profiles'),
+            onPressed: () => {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()))
+            },
+            child: const Text('Open Login Page'),
           ),
         ),
       ),
