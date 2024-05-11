@@ -20,87 +20,90 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: screenSize.height * 0.03,
-            ),
-            Center(
-              child: Text(
-                'Sari',
-                style: TextStyle(
-                    fontSize: screenSize.height * 0.10,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textColor),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.backgroundColor,
+        body: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: screenSize.height * 0.03,
               ),
-            ),
-            SizedBox(
-              height: screenSize.height * 0.03,
-            ),
-            const Text('Login', style: AppTypography.heading1),
-            const Text('Sign in your business account.',
-                style: AppTypography.bodyText),
-            SizedBox(
-              height: screenSize.height * 0.02,
-            ),
-            TextField(
-                controller: username,
-                decoration: AppForm.whiteField.copyWith(
-                  labelText: 'Username',
-                )),
-            SizedBox(
-              height: screenSize.height * 0.02,
-            ),
-            TextField(
-                controller: password,
-                obscureText: true,
-                decoration: AppForm.whiteField.copyWith(
-                  labelText: 'Password',
-                )),
-            SizedBox(
-              height: screenSize.height * 0.02,
-            ),
-            Container(
-              width: double.infinity,
-              height: 55,
-              child: ElevatedButton(
-                  onPressed: () {},
-                  style: AppForm.darkButton,
-                  child: const Text(
-                    'LOGIN',
-                    style: TextStyle(color: AppColors.dirtyWhite),
+              Center(
+                child: Text(
+                  'Sari',
+                  style: TextStyle(
+                      fontSize: screenSize.height * 0.10,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textColor),
+                ),
+              ),
+              SizedBox(
+                height: screenSize.height * 0.03,
+              ),
+              const Text('Login', style: AppTypography.heading1),
+              const Text('Sign in your business account.',
+                  style: AppTypography.bodyText),
+              SizedBox(
+                height: screenSize.height * 0.02,
+              ),
+              TextField(
+                  controller: username,
+                  decoration: AppForm.whiteField.copyWith(
+                    labelText: 'Username',
                   )),
-            ),
-            SizedBox(
-              height: screenSize.height * 0.15,
-            ),
-            Center(
-              child: Text.rich(TextSpan(
-                  text: 'Don’t have an account? ',
-                  style: AppTypography.bodyText,
-                  children: [
-                    TextSpan(
-                      text: 'Sign up',
-                      style: AppTypography.bodyText.copyWith(
-                          color: AppColors.primaryColor,
-                          fontWeight: FontWeight.bold),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const RegisterBusinessAcc()));
-                        },
-                    )
-                  ])),
-            )
-          ],
+              SizedBox(
+                height: screenSize.height * 0.02,
+              ),
+              TextField(
+                  controller: password,
+                  obscureText: true,
+                  decoration: AppForm.whiteField.copyWith(
+                    labelText: 'Password',
+                  )),
+              SizedBox(
+                height: screenSize.height * 0.02,
+              ),
+              Container(
+                width: double.infinity,
+                height: 55,
+                child: ElevatedButton(
+                    onPressed: () {},
+                    style: AppForm.darkButton,
+                    child: const Text(
+                      'LOGIN',
+                      style: TextStyle(color: AppColors.dirtyWhite),
+                    )),
+              ),
+              SizedBox(
+                height: screenSize.height * 0.20,
+              ),
+              Center(
+                child: Text.rich(TextSpan(
+                    text: 'Don’t have an account? ',
+                    style: AppTypography.bodyText,
+                    children: [
+                      TextSpan(
+                        text: 'Sign up',
+                        style: AppTypography.bodyText.copyWith(
+                            color: AppColors.primaryColor,
+                            fontWeight: FontWeight.bold),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const RegisterBusinessAcc()));
+                          },
+                      )
+                    ])),
+              )
+
+            ],
+          ),
         ),
       ),
     );
