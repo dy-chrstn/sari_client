@@ -31,4 +31,15 @@ class NoteModel {
     createdBy: json["createdBy"],
     updatedBy: json["updatedBy"],
   );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "userId": userId,
+    "title": title,
+    "content": content,
+    "createdAt": createdAt.toIso8601String(),
+    "updatedAt": updatedAt.toIso8601String(),
+    "createdBy": createdBy,
+    "updatedBy": updatedBy,
+  };
 }
