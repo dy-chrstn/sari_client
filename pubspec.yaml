@@ -37,7 +37,7 @@ dependencies:
   ionicons: ^0.2.2
 
   #state management
-  flutter_bloc: ^8.1.2
+  flutter_bloc: ^8.1.5
 
   #comparing dart objects
   equatable: ^2.0.5
@@ -64,6 +64,7 @@ dependencies:
   http: ^1.2.1
   flutter_dotenv: ^5.1.0
   logger: ^2.2.0
+  bloc: ^8.1.4
 
 dev_dependencies:
   flutter_test:

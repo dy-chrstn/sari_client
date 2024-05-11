@@ -1,5 +1,5 @@
 import 'package:sari/token/model/token.dart';
-import 'package:sari/utils/constants.dart';
+import 'package:sari/utils/env.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
