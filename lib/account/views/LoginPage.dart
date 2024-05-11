@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sari/account/views/RegisterPage.dart';
 import 'package:sari/utils/theme/colors.dart';
-import 'package:sari/utils/theme/constants.dart';
 import 'package:sari/utils/theme/typography.dart';
 import 'package:sari/widgets/form/textfield.dart';
 

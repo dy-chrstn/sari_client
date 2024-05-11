@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:sari/account/services/personalAcc.dart';
 import 'package:sari/account/views/LoginPage.dart';
 
 void main() async {
