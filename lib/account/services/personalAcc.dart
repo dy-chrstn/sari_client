@@ -1,11 +1,11 @@
 import 'package:sari/token/services/token.dart';
-import 'package:sari/user_acc/model/personalAcc.dart';
+import 'package:sari/account/model/personalAcc.dart';
 import 'package:sari/utils/constants.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
-Future<Object> loginPersonalAcc(String email, String password) async {
+Future<PersonalAccModel> loginPersonalAcc(String email, String password) async {
   String token = await getToken();
   // Logger().d('token: $token');
 
@@ -31,7 +31,7 @@ Future<Object> loginPersonalAcc(String email, String password) async {
     }
   } catch (e) {
     // Logger().e(e);
-    return e.toString();
+    throw e.toString();
   }
 }
 
@@ -47,7 +47,7 @@ Future<PersonalAccModel> registerPersonalAcc(
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token'
         },
-        body: jsonEncode({'name': name, 'pin': pin}));
+        body: jsonEncode(PersonalAccModel( owner: owner, name: name, pin: pin)));
     final data = jsonDecode(response.body);
     Logger().d('Response: $data');
 

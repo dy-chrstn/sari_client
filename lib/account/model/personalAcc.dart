@@ -17,4 +17,11 @@ class PersonalAccModel {
       pin: json['pin'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'pin': pin,
+    };
+  }
 }

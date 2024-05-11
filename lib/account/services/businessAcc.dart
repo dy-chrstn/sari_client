@@ -1,11 +1,11 @@
 import 'package:sari/token/services/token.dart';
-import 'package:sari/user_acc/model/businessAcc.dart';
+import 'package:sari/account/model/businessAcc.dart';
 import 'package:sari/utils/constants.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
-Future<Object> loginBusinessAcc(String email, String password) async {
+Future<BusinessAccModel> loginBusinessAcc(String email, String password) async {
   String token = await getToken();
   // Logger().d('token: $token');
 
@@ -31,7 +31,7 @@ Future<Object> loginBusinessAcc(String email, String password) async {
     }
   } catch (e) {
     // Logger().e(e);
-    return e.toString();
+    throw e.toString();
   }
 }
 

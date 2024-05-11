@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:sari/user_acc/services/personalAcc.dart';
+import 'package:sari/account/services/personalAcc.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
