@@ -21,6 +21,7 @@ class _LoginPageState extends State<LoginPage> {
     var screenSize = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.backgroundColor,
         body: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -70,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 55,
                 child: ElevatedButton(
                     onPressed: () {
-                      GoRouter.of(context).pushReplacementNamed('/profile/list');
+                      GoRouter.of(context).pushReplacement('/profile/list');
                     },
                     style: AppForm.darkButton,
                     child: const Text(
@@ -93,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                             fontWeight: FontWeight.bold),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            GoRouter.of(context).pushNamed('/business/register');
+                            GoRouter.of(context).pushReplacement('/business/register');
                           },
                       )
                     ])),

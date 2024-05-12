@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sari/utils/theme/colors.dart';
 
 import '../../utils/theme/typography.dart';
@@ -54,7 +55,7 @@ class _ProfilesPageState extends State<ProfilesPage> {
                               title: const Text('Create Profile'),
                               leading: const Icon(Icons.add),
                               onTap: () {
-                                Navigator.pushNamed(context, '/create-profile');
+                                GoRouter.of(context).go('/profile/create/name');
                               },
                               tileColor: AppColors.dirtyWhite,
                               shape: RoundedRectangleBorder(

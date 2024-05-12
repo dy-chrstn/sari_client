@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../utils/theme/colors.dart';
 import '../../utils/theme/typography.dart';
@@ -44,7 +45,7 @@ class _ProfileNameState extends State<ProfileName> {
               SizedBox( height: screenSize.height * 0.03,),
               ElevatedButton(
                 onPressed: (){
-                  Navigator.pushNamed(context, '/profile/create/pin');
+                  GoRouter.of(context).go('/profile/create/createPin');
                 }, 
                 child: Text('DONE')),
               SizedBox( height: screenSize.height * 0.03,),
