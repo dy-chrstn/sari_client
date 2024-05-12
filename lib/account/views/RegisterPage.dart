@@ -90,7 +90,7 @@ class _RegisterBusinessAccState extends State<RegisterBusinessAcc> {
                             fontWeight: FontWeight.bold),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            GoRouter.of(context).push('/');
+                            GoRouter.of(context).pushReplacementNamed('/business/login');
                           },
                       )
                     ])),

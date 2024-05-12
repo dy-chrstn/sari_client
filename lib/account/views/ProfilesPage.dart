@@ -53,7 +53,9 @@ class _ProfilesPageState extends State<ProfilesPage> {
                             return ListTile(
                               title: const Text('Create Profile'),
                               leading: const Icon(Icons.add),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.pushNamed(context, '/create-profile');
+                              },
                               tileColor: AppColors.dirtyWhite,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0),

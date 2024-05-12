@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 55,
                 child: ElevatedButton(
                     onPressed: () {
-                      GoRouter.of(context).pushReplacement('/profiles');
+                      GoRouter.of(context).pushReplacementNamed('/profile/list');
                     },
                     style: AppForm.darkButton,
                     child: const Text(
@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                             fontWeight: FontWeight.bold),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            GoRouter.of(context).push('/register');
+                            GoRouter.of(context).pushNamed('/business/register');
                           },
                       )
                     ])),
