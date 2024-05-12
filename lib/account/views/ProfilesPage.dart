@@ -46,37 +46,55 @@ class _ProfilesPageState extends State<ProfilesPage> {
                     ),
                     Expanded(
                       child: ListView.separated(
-                          itemCount: data.length,
-                          scrollDirection: Axis.vertical,
-                          itemBuilder: (context, index) {
+                        itemCount: data.length + 1, 
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: (context, index) {
+                          if (index == data.length) {
                             return ListTile(
-                              title: Text('Profile ${index + 1}'),
+                              title: const Text('Create Profile'),
+                              leading: const Icon(Icons.add),
                               onTap: () {},
-                              leading: const Icon(Icons.person),
-                              trailing: PopupMenuButton(
-                                  itemBuilder: (context) => [
-                                        PopupMenuItem(
-                                          onTap: () {},
-                                          child: const Text('Edit'),
-                                        ),
-                                        PopupMenuItem(
-                                          onTap: () {},
-                                          child: const Text('Delete'),
-                                        ),
-                                      ]),
                               tileColor: AppColors.dirtyWhite,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0)),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                               contentPadding: const EdgeInsets.symmetric(
                                   horizontal: 16.0, vertical: 8.0),
                             );
-                          },
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(
-                              height: 8.0,
+                          } else {
+                            return ListTile(
+                              title: Text('Profile ${index + 1}'),
+                              onTap: () {
+                              },
+                              leading: const Icon(Icons.person),
+                              trailing: PopupMenuButton(
+                                itemBuilder: (context) => [
+                                   PopupMenuItem(
+                                    onTap: () {},
+                                    child: Text('Edit'),
+                                  ),
+                                   PopupMenuItem(
+                                    onTap: () {},
+                                    child: Text('Delete'),
+                                  ),
+                                ],
+                              ),
+                              tileColor: AppColors.dirtyWhite,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 16.0, vertical: 8.0),
                             );
-                          }),
-                    )
+                          }
+                        },
+                        separatorBuilder: (context, index) {
+                          return const SizedBox(
+                            height: 8.0,
+                          );
+                        },
+                      ),
+                    ),
                   ],
                 ))));
   }
