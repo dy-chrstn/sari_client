@@ -50,6 +50,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 fontWeight: FontWeight.w600,
                 color: AppColors.dirtyWhite),
           ),
+          SizedBox(height: screenSize.height * 0.08,)
         ],
       ),
     ));
