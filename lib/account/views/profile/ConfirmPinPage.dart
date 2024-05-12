@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/theme/colors.dart';
+
 class ConfirmPIn extends StatefulWidget {
   const ConfirmPIn({super.key});
 
@@ -10,6 +12,9 @@ class ConfirmPIn extends StatefulWidget {
 class _ConfirmPInState extends State<ConfirmPIn> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Confirm Pin'),);
+    return const Scaffold(
+      backgroundColor: AppColors.backgroundColor,
+      body: Center(child: Text('Confirm Pin'),),
+    );
   }
 }

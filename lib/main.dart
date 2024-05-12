@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sari/SplashScreen.dart';
-import 'package:sari/account/views/ConfirmPinPage.dart';
-import 'package:sari/account/views/CreatePinPage.dart';
-import 'package:sari/account/views/LoginPage.dart';
-import 'package:sari/account/views/ProfileNamePage.dart';
-import 'package:sari/account/views/ProfilesPage.dart';
-import 'package:sari/account/views/RegisterPage.dart';
+import 'package:sari/account/views/profile/ConfirmPinPage.dart';
+import 'package:sari/account/views/profile/CreatePinPage.dart';
+import 'package:sari/account/views/business/BusinessLoginPage.dart';
+import 'package:sari/account/views/profile/ProfileNamePage.dart';
+import 'package:sari/account/views/profile/ProfilesPage.dart';
+import 'package:sari/account/views/business/BusinessRegisterPage.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");

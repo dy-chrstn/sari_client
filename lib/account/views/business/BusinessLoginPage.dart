@@ -94,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                             fontWeight: FontWeight.bold),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            GoRouter.of(context).pushReplacement('/business/register');
+                            GoRouter.of(context).push('/business/register');
                           },
                       )
                     ])),

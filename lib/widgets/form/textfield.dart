@@ -19,4 +19,13 @@ class AppForm {
       RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppConstants.borderRadius)),
     )
   );
+
+  static ButtonStyle whiteButton = ButtonStyle(
+    backgroundColor: const MaterialStatePropertyAll(AppColors.dirtyWhite),
+    shape: MaterialStatePropertyAll(
+      RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppConstants.borderRadius)),
+    )
+  );
+
 }
+  

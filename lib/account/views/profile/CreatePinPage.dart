@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sari/utils/theme/colors.dart';
 
 class CreatePin extends StatefulWidget {
   const CreatePin({super.key});
@@ -10,6 +11,9 @@ class CreatePin extends StatefulWidget {
 class _CreatePinState extends State<CreatePin> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Create Pin'),);
+    return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
+      body: Center(child: Text('Create Pin'),),
+    );
   }
 }
