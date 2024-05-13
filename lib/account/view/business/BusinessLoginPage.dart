@@ -1,24 +1,39 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:logger/logger.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:sari/account/services/businessAcc.dart';
 import 'package:sari/utils/theme/colors.dart';
 import 'package:sari/utils/theme/typography.dart';
 import 'package:sari/widgets/form/AppForm.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final dynamic message;
+  const LoginPage({super.key, required this.message});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController username = TextEditingController();
-  final TextEditingController password = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  bool isLoading = false;
+  bool isError = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.message != null) {
+      isError = true;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -50,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: screenSize.height * 0.02,
               ),
               TextField(
-                  controller: username,
+                  controller: usernameController,
                   textInputAction: TextInputAction.next,
                   decoration: AppForm.whiteField.copyWith(
                     labelText: 'Username',
@@ -59,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: screenSize.height * 0.02,
               ),
               TextField(
-                  controller: password,
+                  controller: passwordController,
                   obscureText: true,
                   textInputAction: TextInputAction.done,
                   decoration: AppForm.whiteField.copyWith(
@@ -69,18 +84,20 @@ class _LoginPageState extends State<LoginPage> {
                 height: screenSize.height * 0.02,
               ),
               SizedBox(
-                width: double.infinity,
-                height: 55,
-                child: ElevatedButton(
-                    onPressed: () {
-                      GoRouter.of(context).pushReplacement('/profile/list');
-                    },
-                    style: AppForm.darkButton,
-                    child: const Text(
-                      'LOGIN',
-                      style: TextStyle(color: AppColors.dirtyWhite),
-                    )),
-              ),
+                  width: double.infinity,
+                  height: 55,
+                  child: ElevatedButton(
+                      onPressed: () async {
+                        await GoRouter.of(context).push('/loading', extra: {
+                          'username': usernameController.text,
+                          'password': passwordController.text
+                        });
+                      },
+                      style: AppForm.darkButton,
+                      child: Text(
+                        'LOGIN',
+                        style: TextStyle(color: AppColors.dirtyWhite),
+                      ))),
               SizedBox(
                 height: screenSize.height * 0.20,
               ),
@@ -101,7 +118,6 @@ class _LoginPageState extends State<LoginPage> {
                       )
                     ])),
               )
-
             ],
           ),
         ),
