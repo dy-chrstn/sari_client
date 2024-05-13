@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sari/SplashScreen.dart';
+import 'package:sari/utils/page/SplashScreen.dart';
 import 'package:sari/account/views/profile/ConfirmPinPage.dart';
 import 'package:sari/account/views/profile/CreatePinPage.dart';
 import 'package:sari/account/views/business/BusinessLoginPage.dart';
