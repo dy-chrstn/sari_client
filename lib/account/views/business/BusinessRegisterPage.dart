@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sari/utils/theme/colors.dart';
 import 'package:sari/utils/theme/typography.dart';
 
-import '../../../widgets/form/textfield.dart';
+import '../../../widgets/form/AppForm.dart';
 
 class RegisterBusinessAcc extends StatefulWidget {
   const RegisterBusinessAcc({super.key});

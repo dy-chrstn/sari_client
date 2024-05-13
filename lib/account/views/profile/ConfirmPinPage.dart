@@ -4,7 +4,7 @@ import 'package:pinput/pinput.dart';
 
 import '../../../utils/theme/colors.dart';
 import '../../../utils/theme/typography.dart';
-import '../../../widgets/form/textfield.dart';
+import '../../../widgets/form/AppForm.dart';
 
 class ConfirmPIn extends StatefulWidget {
   const ConfirmPIn({super.key});
