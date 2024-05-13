@@ -17,7 +17,8 @@ class _ProfileNameState extends State<ProfileName> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return SafeArea(
-        child: Scaffold(
+      child: Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -30,7 +31,7 @@ class _ProfileNameState extends State<ProfileName> {
               child: Text(
                 'Sari',
                 style: TextStyle(
-                    fontSize: screenSize.height * 0.10,
+                    fontSize: screenSize.height * 0.06,
                     fontWeight: FontWeight.w600,
                     color: AppColors.textColor),
               ),
@@ -44,7 +45,11 @@ class _ProfileNameState extends State<ProfileName> {
               child: Card(
                 color: AppColors.primaryColor,
                 shape: CircleBorder(),
-                child: Icon(Icons.person, color: AppColors.dirtyWhite, size: screenSize.height * 0.06,),
+                child: Icon(
+                  Icons.person,
+                  color: AppColors.dirtyWhite,
+                  size: screenSize.height * 0.06,
+                ),
               ),
             ),
             SizedBox(
@@ -57,7 +62,6 @@ class _ProfileNameState extends State<ProfileName> {
             TextField(
               decoration: AppForm.whiteField.copyWith(labelText: 'Name'),
             ),
-            
             SizedBox(
               height: screenSize.height * 0.10,
             ),
@@ -95,4 +99,5 @@ class _ProfileNameState extends State<ProfileName> {
       ),
     ));
   }
+
 }

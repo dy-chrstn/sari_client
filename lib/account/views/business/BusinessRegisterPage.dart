@@ -23,6 +23,7 @@ class _RegisterBusinessAccState extends State<RegisterBusinessAcc> {
     var screenSize = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.backgroundColor,
         body: Padding(
           padding: const EdgeInsets.all(24.0),
