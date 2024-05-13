@@ -8,6 +8,7 @@ import 'package:sari/account/views/business/BusinessLoginPage.dart';
 import 'package:sari/account/views/profile/ProfileNamePage.dart';
 import 'package:sari/account/views/profile/ProfilesPage.dart';
 import 'package:sari/account/views/business/BusinessRegisterPage.dart';
+import 'package:sari/product/views/HomePage.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -33,6 +34,7 @@ class _MainState extends State<Main> {
       GoRoute(path: '/profile/create/name', builder: (context, state) => const ProfileName(),),
       GoRoute(path: '/profile/create/createPin', builder: (context, state) => const CreatePin(),),
       GoRoute(path: '/profile/create/confirmPin', builder: (context, state) => const ConfirmPIn(),),
+      GoRoute(path: '/product/list', builder: (context, state) => const HomePage(),),
     ]
   );
 

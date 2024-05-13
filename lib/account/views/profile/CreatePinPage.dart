@@ -106,7 +106,7 @@ class _CreatePinState extends State<CreatePin> {
               height: 55,
               child: ElevatedButton(
                   onPressed: () {
-                    // GoRouter.of(context).push('/profile/create/createPin');
+                    GoRouter.of(context).push('/profile/create/confirmPin');
                   },
                   style: AppForm.darkButton,
                   child: const Text(
