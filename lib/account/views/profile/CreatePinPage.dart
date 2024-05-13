@@ -16,19 +16,6 @@ class CreatePin extends StatefulWidget {
 class _CreatePinState extends State<CreatePin> {
 
   TextEditingController pinController = TextEditingController();
-  late FocusNode pinFocusNode;
-
-  @override
-  void initState() {
-    super.initState();
-    pinFocusNode = FocusNode();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    pinFocusNode.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +64,6 @@ class _CreatePinState extends State<CreatePin> {
               height: screenSize.height * 0.03,
             ),
             Pinput(
-              focusNode: pinFocusNode,
               controller: pinController,
               closeKeyboardWhenCompleted: true,
               autofocus: true,

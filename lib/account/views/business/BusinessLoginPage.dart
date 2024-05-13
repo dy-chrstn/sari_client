@@ -51,6 +51,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextField(
                   controller: username,
+                  textInputAction: TextInputAction.next,
                   decoration: AppForm.whiteField.copyWith(
                     labelText: 'Username',
                   )),
@@ -60,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
               TextField(
                   controller: password,
                   obscureText: true,
+                  textInputAction: TextInputAction.done,
                   decoration: AppForm.whiteField.copyWith(
                     labelText: 'Password',
                   )),

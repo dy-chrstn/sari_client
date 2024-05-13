@@ -25,6 +25,5 @@ class AppForm {
       RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppConstants.borderRadius)),
     )
   );
-
 }
   

@@ -48,30 +48,36 @@ class _RegisterBusinessAccState extends State<RegisterBusinessAcc> {
               TextField(
                 controller: username,
                 decoration: AppForm.whiteField.copyWith(labelText: 'Username'),
+                textInputAction: TextInputAction.next,
               ),
               SizedBox(height: screenSize.height * 0.02,),
               TextField(
                 controller: email,
                 decoration: AppForm.whiteField.copyWith(labelText: 'Email'),
+                textInputAction: TextInputAction.next,
               ),
               SizedBox(height: screenSize.height * 0.02,),
               TextField(
                 controller: password,
                 obscureText: true,
                 decoration: AppForm.whiteField.copyWith(labelText: 'Password'),
+                textInputAction: TextInputAction.next,
               ),
               SizedBox(height: screenSize.height * 0.02,),
               TextField(
                 controller: confirmPassword,
                 obscureText: true,
                 decoration: AppForm.whiteField.copyWith(labelText: 'Confirm Password'),
+                textInputAction: TextInputAction.done,
               ),
               SizedBox(height: screenSize.height * 0.02,),
               Container(
                 width: double.infinity,
                 height: 55,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      GoRouter.of(context).go('/product/list');
+                    },
                     style: AppForm.darkButton,
                     child: const Text(
                       'REGISTER',
