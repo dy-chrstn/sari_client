@@ -2,8 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
-import 'package:quickalert/quickalert.dart';
-import 'package:sari/account/services/businessAcc.dart';
 import 'package:sari/utils/theme/colors.dart';
 import 'package:sari/utils/theme/typography.dart';
 import 'package:sari/widgets/form/AppForm.dart';
@@ -21,13 +19,14 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController passwordController = TextEditingController();
   bool isLoading = false;
   bool isError = false;
+  bool isErrorUsername = false;
+  bool isErrorPassword = false;
+  bool isPasswordVisible = false;
 
   @override
   void initState() {
     super.initState();
-    if (widget.message != null) {
-      isError = true;
-    }
+    isPasswordVisible = false;
   }
 
   @override
@@ -69,17 +68,38 @@ class _LoginPageState extends State<LoginPage> {
                   textInputAction: TextInputAction.next,
                   decoration: AppForm.whiteField.copyWith(
                     labelText: 'Username',
+                    errorText:
+                        isErrorUsername ? 'Username cannot be empty' : null,
                   )),
               SizedBox(
                 height: screenSize.height * 0.02,
               ),
               TextField(
-                  controller: passwordController,
-                  obscureText: true,
-                  textInputAction: TextInputAction.done,
-                  decoration: AppForm.whiteField.copyWith(
-                    labelText: 'Password',
-                  )),
+                controller: passwordController,
+                obscureText: !isPasswordVisible,
+                textInputAction: TextInputAction.done,
+                obscuringCharacter: '*',
+                decoration: AppForm.whiteField.copyWith(
+                  labelText: 'Password',
+                  errorText:
+                      isErrorPassword ? 'Password cannot be empty' : null,
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      // Based on passwordVisible state choose the icon
+                      isPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      color: Theme.of(context).primaryColorDark,
+                    ),
+                    onPressed: () {
+                      // Update the state i.e. toogle the state of passwordVisible variable
+                      setState(() {
+                        isPasswordVisible = !isPasswordVisible;
+                      });
+                    },
+                  ),
+                ),
+              ),
               SizedBox(
                 height: screenSize.height * 0.02,
               ),
@@ -88,10 +108,19 @@ class _LoginPageState extends State<LoginPage> {
                   height: 55,
                   child: ElevatedButton(
                       onPressed: () async {
-                        await GoRouter.of(context).push('/loading', extra: {
-                          'username': usernameController.text,
-                          'password': passwordController.text
-                        });
+                        isErrorUsername = usernameController.text.isEmpty;
+                        isErrorPassword = passwordController.text.isEmpty;
+
+                        if (isErrorUsername || isErrorPassword) {
+                          setState(() {});
+                          return;
+                        } else {
+                          await GoRouter.of(context).pushReplacement('/loading',
+                              extra: {
+                                'username': usernameController.text,
+                                'password': passwordController.text
+                              });
+                        }
                       },
                       style: AppForm.darkButton,
                       child: Text(

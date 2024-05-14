@@ -24,22 +24,24 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 1), () async {
+    Future.delayed(const Duration(seconds: 0), () async {
       response = await loginBusinessAcc(widget.username, widget.password);
 
       Logger().d('Response: $response');
-      var message = response['message'];
-      Logger().d('Response: $message');
+      // Logger().d('Credentials: ${widget.username} ${widget.password}');
+      // var message = response['message'];
+      // Logger().d('Response: $message');
 
       if (response['code'] == 0) {
         GoRouter.of(context).go('/product/list');
       } else {
         QuickAlert.show(
           context: context,
-          title: 'Error',
-          text: message,
+          title: 'Login Error',
+          text: 'Username or password is incorrect',
           type: QuickAlertType.error,
           confirmBtnText: 'Confirm',
+          confirmBtnColor: AppColors.primaryColor,
           onConfirmBtnTap: () {
             GoRouter.of(context)
                 .go('/business/login', extra: response['message']);
