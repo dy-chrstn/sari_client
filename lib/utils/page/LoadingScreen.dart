@@ -31,17 +31,17 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 0), () async {
-      Logger().i('Loading Screen: \n Username: ${widget.username} \n Password: ${widget.password} \n FromPage: ${widget.fromPage}');
+      // Logger().i('Loading Screen: \n Username: ${widget.username} \n Password: ${widget.password} \n FromPage: ${widget.fromPage}');
       if (widget.fromPage == 'login') {
         response = await loginBusinessAcc(widget.username, widget.password);
 
-        Logger().d('Response: $response');
+        // Logger().d('Response: $response');
         // Logger().d('Credentials: ${widget.username} ${widget.password}');
         // var message = response['message'];
         // Logger().d('Response: $message');
 
         if (response['code'] == 0) {
-          // GoRouter.of(context).go('/product/list');
+          GoRouter.of(context).go('/profile/list');
         } else {
           QuickAlert.show(
             context: context,
@@ -60,10 +60,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
         response = await registerBusinessAcc(widget.username, widget.email, widget.password);
 
         String message = response['message'];
-        Logger().d('Register Response: $message');
+        // Logger().d('Register Response: $message');
 
         if (response['code'] == 0) {
-          GoRouter.of(context).go('/product/list');
+          GoRouter.of(context).go('/profile/list');
         } else {
           QuickAlert.show(
             context: context,
