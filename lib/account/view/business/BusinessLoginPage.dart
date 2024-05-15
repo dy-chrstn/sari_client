@@ -17,8 +17,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool isLoading = false;
-  bool isError = false;
   bool isErrorUsername = false;
   bool isErrorPassword = false;
   bool isPasswordVisible = false;
@@ -89,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                       isPasswordVisible
                           ? Icons.visibility
                           : Icons.visibility_off,
-                      color: Theme.of(context).primaryColorDark,
+                      color: AppColors.primaryColor,
                     ),
                     onPressed: () {
                       // Update the state i.e. toogle the state of passwordVisible variable
@@ -118,7 +116,8 @@ class _LoginPageState extends State<LoginPage> {
                           await GoRouter.of(context).pushReplacement('/loading',
                               extra: {
                                 'username': usernameController.text,
-                                'password': passwordController.text
+                                'password': passwordController.text,
+                                'fromPage': 'login'
                               });
                         }
                       },

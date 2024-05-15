@@ -39,7 +39,7 @@ Future<dynamic> loginBusinessAcc(String email, String password) async {
 Future<Object> registerBusinessAcc(
     String username, String email, String password) async {
   String token = await getToken();
-  // Logger().d('token: $token');
+  Logger().d('token: $token');
 
   try {
     final url = Uri.parse('$baseUrl/register');
@@ -55,12 +55,13 @@ Future<Object> registerBusinessAcc(
 
     if (data['messages']['code'] == 0) {
       final businessAcc = BusinessAccModel.fromJson(data['response']);
+      final dynamic message = data['messages'];
       // Logger().d(data['response']);
 
-      return businessAcc;
+      return message;
     } else {
       Logger().e(data['messages']['message']);
-      return data['messages']['message'];
+      return data['messages'];
     }
   } catch (e) {
     Logger().e(e);
@@ -96,6 +97,62 @@ Future<Object> updateBusinessAcc(
     }
   } catch (e) {
     Logger().e(e);
+    return e.toString();
+  }
+}
+
+Future<Object> deleteBusinessAcc() async {
+  String token = await getToken();
+  // Logger().d('token: $token');
+
+  try {
+    final url = Uri.parse('$baseUrl/delete');
+    final response = await http.delete(url, headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    });
+    final data = jsonDecode(response.body);
+    // Logger().d('Response: $data');
+
+    if (data['messages']['code'] == 0) {
+      final businessAcc = BusinessAccModel.fromJson(data['response']);
+      // Logger().d(data['response']);
+
+      return businessAcc;
+    } else {
+      Logger().e(data['messages']['message']);
+      return data['messages']['message'];
+    }
+  } catch (e) {
+    Logger().e(e);
+    return e.toString();
+  }
+}
+
+Future<Object> checkUsername(String username) async {
+  String token = await getToken();
+
+  try {
+    final url = Uri.parse('$baseUrl/checkUsername/$username');
+    final response = await http.get(url, headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    });
+    final data = jsonDecode(response.body);
+
+    Logger().d("Response: $data");
+    if (data['messages']['code'] == 0) {
+      final businessAcc = BusinessAccModel.fromJson(data['response']);
+
+      Logger().d('businessAcc: $businessAcc');
+
+      return businessAcc;
+    } else {
+      Logger().e(data['messages']['message']);
+      return data['messages']['message'];
+    }
+  } catch (e) {
+    Logger().d("Error: $e");
     return e.toString();
   }
 }

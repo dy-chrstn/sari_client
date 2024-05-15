@@ -8,10 +8,16 @@ import 'package:sari/utils/theme/colors.dart';
 
 class LoadingScreen extends StatefulWidget {
   final String username;
+  final String email;
   final String password;
+  final String fromPage;
 
   const LoadingScreen(
-      {Key? key, required this.username, required this.password})
+      {Key? key,
+      required this.username,
+      required this.email,
+      required this.password,
+      required this.fromPage})
       : super(key: key);
 
   @override
@@ -25,28 +31,53 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 0), () async {
-      response = await loginBusinessAcc(widget.username, widget.password);
+      Logger().i('Loading Screen: \n Username: ${widget.username} \n Password: ${widget.password} \n FromPage: ${widget.fromPage}');
+      if (widget.fromPage == 'login') {
+        response = await loginBusinessAcc(widget.username, widget.password);
 
-      Logger().d('Response: $response');
-      // Logger().d('Credentials: ${widget.username} ${widget.password}');
-      // var message = response['message'];
-      // Logger().d('Response: $message');
+        Logger().d('Response: $response');
+        // Logger().d('Credentials: ${widget.username} ${widget.password}');
+        // var message = response['message'];
+        // Logger().d('Response: $message');
 
-      if (response['code'] == 0) {
-        GoRouter.of(context).go('/product/list');
-      } else {
-        QuickAlert.show(
-          context: context,
-          title: 'Login Error',
-          text: 'Username or password is incorrect',
-          type: QuickAlertType.error,
-          confirmBtnText: 'Confirm',
-          confirmBtnColor: AppColors.primaryColor,
-          onConfirmBtnTap: () {
-            GoRouter.of(context)
-                .go('/business/login', extra: response['message']);
-          },
-        );
+        if (response['code'] == 0) {
+          // GoRouter.of(context).go('/product/list');
+        } else {
+          QuickAlert.show(
+            context: context,
+            title: 'Login Error',
+            text: 'Username or password is incorrect',
+            type: QuickAlertType.error,
+            confirmBtnText: 'Confirm',
+            confirmBtnColor: AppColors.primaryColor,
+            onConfirmBtnTap: () {
+              GoRouter.of(context)
+                  .go('/business/login', extra: response['message']);
+            },
+          );
+        }
+      }else if( widget.fromPage == 'register'){
+        response = await registerBusinessAcc(widget.username, widget.email, widget.password);
+
+        String message = response['message'];
+        Logger().d('Register Response: $message');
+
+        if (response['code'] == 0) {
+          GoRouter.of(context).go('/product/list');
+        } else {
+          QuickAlert.show(
+            context: context,
+            title: 'Register Error',
+            text: message,
+            type: QuickAlertType.error,
+            confirmBtnText: 'Confirm',
+            confirmBtnColor: AppColors.primaryColor,
+            onConfirmBtnTap: () {
+              GoRouter.of(context)
+                  .go('/business/register', extra: response['message']);
+            },
+          );
+        }
       }
     });
   }

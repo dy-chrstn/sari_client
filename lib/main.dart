@@ -33,9 +33,11 @@ class _MainState extends State<Main> {
       builder: (context, state) {
         final extra = state.extra as Map<String, String>;
         final username = extra['username'] ?? '';
+        final email = extra['email'] ?? '';
         final password = extra['password'] ?? '';
+        final fromPage = extra['fromPage'] ?? '';
 
-        return LoadingScreen(username: username, password: password);
+        return LoadingScreen(username: username, email: email, password: password, fromPage: fromPage);
       },
     ),
     GoRoute(

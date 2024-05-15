@@ -126,3 +126,31 @@ Future<PersonalAccModel> updateProfile(
     throw e.toString();
   }
 }
+
+Future<PersonalAccModel> deleteProfile(String owner) async {
+  String token = await getToken();
+  Logger().d('token: $token');
+
+  try {
+    final url = Uri.parse('$baseUrl/deleteProfileAcc/$owner');
+    final response = await http.delete(url, headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    });
+    final data = jsonDecode(response.body);
+    Logger().d('Response: $data');
+
+    if (data['messages']['code'] == 0) {
+      final personalAcc = PersonalAccModel.fromJson(data['response']);
+      Logger().d(data['response']);
+
+      return personalAcc;
+    } else {
+      Logger().e(data['messages']['message']);
+      return data['messages']['message'];
+    }
+  } catch (e) {
+    Logger().e(e);
+    throw e.toString();
+  }
+}
