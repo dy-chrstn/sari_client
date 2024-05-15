@@ -13,12 +13,11 @@ class LoadingScreen extends StatefulWidget {
   final String fromPage;
 
   const LoadingScreen(
-      {Key? key,
+      {super.key,
       required this.username,
       required this.email,
       required this.password,
-      required this.fromPage})
-      : super(key: key);
+      required this.fromPage});
 
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
@@ -31,17 +30,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 0), () async {
-      // Logger().i('Loading Screen: \n Username: ${widget.username} \n Password: ${widget.password} \n FromPage: ${widget.fromPage}');
+      Logger().i('Loading Screen: \n Username: ${widget.username} \n Password: ${widget.password} \n FromPage: ${widget.fromPage}');
       if (widget.fromPage == 'login') {
         response = await loginBusinessAcc(widget.username, widget.password);
+        
+        Logger().d('Response: $response');
 
-        // Logger().d('Response: $response');
-        // Logger().d('Credentials: ${widget.username} ${widget.password}');
-        // var message = response['message'];
-        // Logger().d('Response: $message');
-
-        if (response['code'] == 0) {
-          GoRouter.of(context).go('/profile/list');
+        if (response['messages']['code'] == 0) {
+          GoRouter.of(context).go('/profile/list', extra: response['response']['userId']);
         } else {
           QuickAlert.show(
             context: context,

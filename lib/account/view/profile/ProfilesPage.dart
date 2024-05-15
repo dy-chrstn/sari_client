@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:logger/logger.dart';
 import 'package:sari/utils/theme/colors.dart';
 
 import '../../../utils/theme/typography.dart';
 
 class ProfilesPage extends StatefulWidget {
-  const ProfilesPage({super.key});
+  final String userId;
+  const ProfilesPage({super.key, required this.userId});
 
   @override
   State<ProfilesPage> createState() => _ProfilesPageState();
@@ -14,6 +16,10 @@ class ProfilesPage extends StatefulWidget {
 
 class _ProfilesPageState extends State<ProfilesPage> {
   List<Object> data = ['1', '2', '3'];
+
+  void displayProfiles () {
+    Logger().d('User Id: ${widget.userId}');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +61,8 @@ class _ProfilesPageState extends State<ProfilesPage> {
                               title: const Text('Create Profile'),
                               leading: const Icon(Icons.add),
                               onTap: () {
-                                GoRouter.of(context).push('/profile/create/name');
+                                // GoRouter.of(context).push('/profile/create/name');
+                                displayProfiles();
                               },
                               tileColor: AppColors.dirtyWhite,
                               shape: RoundedRectangleBorder(

@@ -18,14 +18,14 @@ Future<dynamic> loginBusinessAcc(String email, String password) async {
         },
         body: jsonEncode({'username': email, 'password': password}));
     final data = jsonDecode(response.body);
-    // Logger().d(data);
+    Logger().d(data);
 
     if (data['messages']['code'] == 0) {
       final businessAcc = BusinessAccModel.fromJson(data['response']);
       final dynamic message = data['messages'];
       // Logger().d(data['response']);
 
-      return message;
+      return data;
     } else {
       // Logger().e(data['messages']['message']);
       return data['messages'];

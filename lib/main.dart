@@ -37,7 +37,11 @@ class _MainState extends State<Main> {
         final password = extra['password'] ?? '';
         final fromPage = extra['fromPage'] ?? '';
 
-        return LoadingScreen(username: username, email: email, password: password, fromPage: fromPage);
+        return LoadingScreen(
+            username: username,
+            email: email,
+            password: password,
+            fromPage: fromPage);
       },
     ),
     GoRoute(
@@ -48,7 +52,13 @@ class _MainState extends State<Main> {
         builder: (context, state) => const RegisterBusinessAcc()),
     GoRoute(
         path: '/profile/list',
-        builder: (context, state) => const ProfilesPage()),
+        builder: (context, state) {
+          final extra = state.extra as String;
+
+          final userId = extra;
+
+          return ProfilesPage( userId: userId);
+        }),
     GoRoute(
       path: '/profile/create/name',
       builder: (context, state) => const ProfileName(),
