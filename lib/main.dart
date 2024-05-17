@@ -65,11 +65,27 @@ class _MainState extends State<Main> {
     ),
     GoRoute(
       path: '/profile/create/createPin',
-      builder: (context, state) => const CreatePin(),
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>;
+
+        final userId =  extra['userId'] ?? '';
+        final name = extra['name'] ?? '';
+
+
+        return CreatePin(userId: userId, name: name);
+      },
     ),
     GoRoute(
       path: '/profile/create/confirmPin',
-      builder: (context, state) => const ConfirmPIn(),
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>;
+
+        final userId =  extra['userId'] ?? '';
+        final name = extra['name'] ?? '';
+        final pin = extra['pin'] ?? '';
+
+        return ConfirmPin(userId: userId, name: name, pin: pin);
+      },
     ),
     GoRoute(
       path: '/product/list',
