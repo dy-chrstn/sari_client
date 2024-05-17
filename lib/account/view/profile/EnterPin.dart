@@ -7,7 +7,9 @@ import '../../../utils/theme/typography.dart';
 import '../../../widgets/form/AppForm.dart';
 
 class EnterPin extends StatefulWidget {
-  const EnterPin({super.key});
+  final String userId;
+  final String name;
+  const EnterPin({super.key, required this.userId, required this.name});
 
   @override
   State<EnterPin> createState() => _EnterPinState();
@@ -91,7 +93,7 @@ class _EnterPinState extends State<EnterPin> {
               height: 55,
               child: ElevatedButton(
                   onPressed: () {
-                    GoRouter.of(context).go('/product/list');
+                    GoRouter.of(context).go('/product/list', );
                   },
                   style: AppForm.darkButton,
                   child: const Text(

@@ -21,6 +21,8 @@ class _ProfilesPageState extends State<ProfilesPage> {
     Logger().d('User Id: ${widget.userId}');
   }
 
+  String name = '';
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -61,8 +63,8 @@ class _ProfilesPageState extends State<ProfilesPage> {
                               title: const Text('Create Profile'),
                               leading: const Icon(Icons.add),
                               onTap: () {
-                                // GoRouter.of(context).push('/profile/create/name');
-                                displayProfiles();
+                                GoRouter.of(context).push('/profile/login/enterPin', extra: widget.userId);
+                                // displayProfiles();
                               },
                               tileColor: AppColors.dirtyWhite,
                               shape: RoundedRectangleBorder(

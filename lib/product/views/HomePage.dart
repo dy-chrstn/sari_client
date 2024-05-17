@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sari/utils/theme/colors.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final String userId;
+  final String name;
+  const HomePage({super.key, required this.userId, required this.name});
 
   @override
   State<HomePage> createState() => _HomePageState();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sari/account/view/profile/EnterPin.dart';
 import 'package:sari/utils/page/LoadingScreen.dart';
 import 'package:sari/utils/page/SplashScreen.dart';
 import 'package:sari/account/view/profile/ConfirmPinPage.dart';
@@ -88,8 +89,26 @@ class _MainState extends State<Main> {
       },
     ),
     GoRoute(
+      path: '/profile/login/enterPin',
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>;
+
+        final userId =  extra['userId'] ?? '';
+        final name = extra['name'] ?? '';
+
+        return EnterPin(userId: userId, name: name);
+      },
+    ),
+    GoRoute(
       path: '/product/list',
-      builder: (context, state) => const HomePage(),
+      builder: (context, state){
+        final extra = state.extra as Map<String, dynamic>;
+
+        final userId =  extra['userId'] ?? '';
+        final name = extra['name'] ?? '';
+
+        return HomePage(userId: userId, name: name);
+      },
     ),
   ]);
 
