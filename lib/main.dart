@@ -103,7 +103,6 @@ class _MainState extends State<Main> {
       path: '/product/list',
       builder: (context, state){
         final extra = state.extra as Map<String, dynamic>;
-
         final userId =  extra['userId'] ?? '';
         final name = extra['name'] ?? '';
 
