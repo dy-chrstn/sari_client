@@ -21,8 +21,6 @@ Future<dynamic> loginBusinessAcc(String email, String password) async {
     Logger().d(data);
 
     if (data['messages']['code'] == 0) {
-      final businessAcc = BusinessAccModel.fromJson(data['response']);
-      final dynamic message = data['messages'];
       // Logger().d(data['response']);
 
       return data;

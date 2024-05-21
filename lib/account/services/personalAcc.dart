@@ -68,22 +68,22 @@ Future<PersonalAccModel> registerPersonalAcc(
 
 Future<List<PersonalAccModel>> getPersonalAccList(String owner) async {
   String token = await getToken();
-  Logger().d('token: $token');
+  // Logger().d('token: $token');
 
   try {
-    final url = Uri.parse('$baseUrl/profiles/$owner');
+    final url = Uri.parse('$baseUrl/profile/retrieve/$owner');
     final response = await http.get(url, headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $token'
     });
     final data = jsonDecode(response.body);
-    Logger().d('Response: $data');
+    // Logger().d('Response: $data');
 
     if (data['messages']['code'] == 0) {
       final personalAccList = <PersonalAccModel>[];
       data['response']
           .forEach((e) => personalAccList.add(PersonalAccModel.fromJson(e)));
-      Logger().d(data['response']);
+      // Logger().d(data['response']);
 
       return personalAccList;
     } else {

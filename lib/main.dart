@@ -73,7 +73,13 @@ class _MainState extends State<Main> {
     ),
     GoRoute(
       path: '/product/list',
-      builder: (context, state) => const HomePage(),
+      builder: (context, state) {
+        final extra = state.extra as Map<String, String>;
+
+        final userId = extra['userId'] ?? '';
+        final name = extra['name'] ?? '';
+        return HomePage(userId: userId, name: name);
+      },
     ),
   ]);
 

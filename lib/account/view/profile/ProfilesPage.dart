@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:logger/logger.dart';
+import 'package:sari/account/services/personalAcc.dart';
 import 'package:sari/utils/theme/colors.dart';
 
 import '../../../utils/theme/typography.dart';
+import '../../model/personalAcc.dart';
 
 class ProfilesPage extends StatefulWidget {
   final String userId;
@@ -15,53 +17,85 @@ class ProfilesPage extends StatefulWidget {
 }
 
 class _ProfilesPageState extends State<ProfilesPage> {
-  List<Object> data = ['1', '2', '3'];
+  List<PersonalAccModel> profileList = [];
+  bool isLoading = true;
 
-  void displayProfiles () {
-    Logger().d('User Id: ${widget.userId}');
+  @override
+  void initState() {
+    super.initState();
+    displayProfiles();
+  }
+
+  void displayProfiles() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    Future.delayed(const Duration(milliseconds: 1500));
+
+    List<PersonalAccModel> response = await getPersonalAccList(widget.userId);
+
+    setState(() {
+      profileList = response;
+      isLoading = false;
+      // Logger().d('Profile List: $profileList');
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return SafeArea(
-        child: Scaffold(
-            backgroundColor: AppColors.backgroundColor,
-            body: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: screenSize.height * 0.01,
+      child: Scaffold(
+        backgroundColor: AppColors.backgroundColor,
+        body: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: screenSize.height * 0.01,
+                ),
+                Center(
+                  child: Text(
+                    'Sari',
+                    style: TextStyle(
+                      fontSize: screenSize.height * 0.06,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textColor,
                     ),
-                    Center(
-                      child: Text(
-                        'Sari',
-                        style: TextStyle(
-                            fontSize: screenSize.height * 0.06,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.textColor),
-                      ),
-                    ),
-                    SizedBox(
-                      height: screenSize.height * 0.02,
-                    ),
-                    const Text('Choose your profile',
-                        style: AppTypography.bodyText),
-                    SizedBox(
-                      height: screenSize.height * 0.02,
-                    ),
-                    Expanded(
-                      child: ListView.separated(
-                        itemCount: data.length + 1, 
+                  ),
+                ),
+                SizedBox(
+                  height: screenSize.height * 0.02,
+                ),
+                const Text(
+                  'Choose your profile',
+                  style: AppTypography.bodyText,
+                ),
+                SizedBox(
+                  height: screenSize.height * 0.02,
+                ),
+                isLoading
+                    ? Center(child: LoadingAnimationWidget.hexagonDots(
+                      color: AppColors.primaryColor,
+                      size: 64,
+                    ))
+                    : ListView.separated(
+                        itemCount: profileList.length + 1,
                         scrollDirection: Axis.vertical,
+                        physics:
+                            const NeverScrollableScrollPhysics(), // Disable ListView scrolling
+                        shrinkWrap:
+                            true, // Make ListView take only as much space as needed
                         itemBuilder: (context, index) {
-                          if (index == data.length) {
+                          if (index == profileList.length) {
                             return ListTile(
                               title: const Text('Create Profile'),
                               leading: const Icon(Icons.add),
                               onTap: () {
-                                // GoRouter.of(context).push('/profile/create/name');
+                                GoRouter.of(context)
+                                    .push('/profile/create/name');
                                 displayProfiles();
                               },
                               tileColor: AppColors.dirtyWhite,
@@ -69,23 +103,27 @@ class _ProfilesPageState extends State<ProfilesPage> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 8.0),
+                                horizontal: 16.0,
+                                vertical: 8.0,
+                              ),
                             );
                           } else {
                             return ListTile(
-                              title: Text('Profile ${index + 1}'),
+                              title: Text(profileList[index].name ??
+                                  'Profile ${index + 1}'),
                               onTap: () {
+                                // Handle profile tap
                               },
                               leading: const Icon(Icons.person),
                               trailing: PopupMenuButton(
                                 itemBuilder: (context) => [
-                                   PopupMenuItem(
+                                  PopupMenuItem(
                                     onTap: () {},
-                                    child: Text('Edit'),
+                                    child: const Text('Edit'),
                                   ),
-                                   PopupMenuItem(
+                                  PopupMenuItem(
                                     onTap: () {},
-                                    child: Text('Delete'),
+                                    child: const Text('Delete'),
                                   ),
                                 ],
                               ),
@@ -94,7 +132,9 @@ class _ProfilesPageState extends State<ProfilesPage> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 8.0),
+                                horizontal: 16.0,
+                                vertical: 8.0,
+                              ),
                             );
                           }
                         },
@@ -104,8 +144,11 @@ class _ProfilesPageState extends State<ProfilesPage> {
                           );
                         },
                       ),
-                    ),
-                  ],
-                ))));
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
