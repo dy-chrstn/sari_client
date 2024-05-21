@@ -6,14 +6,17 @@ import '../../../utils/theme/colors.dart';
 import '../../../utils/theme/typography.dart';
 import '../../../widgets/form/AppForm.dart';
 
-class ConfirmPIn extends StatefulWidget {
-  const ConfirmPIn({super.key});
+class ConfirmPin extends StatefulWidget {
+  final String userId;
+  final String name;
+  final String pin;
+  const ConfirmPin({super.key, required this.userId, required this.name, required this.pin});
 
   @override
-  State<ConfirmPIn> createState() => _ConfirmPInState();
+  State<ConfirmPin> createState() => _ConfirmPinState();
 }
 
-class _ConfirmPInState extends State<ConfirmPIn> {
+class _ConfirmPinState extends State<ConfirmPin> {
    TextEditingController pinController = TextEditingController();
 
   @override

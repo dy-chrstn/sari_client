@@ -7,7 +7,9 @@ import '../../../utils/theme/typography.dart';
 import '../../../widgets/form/AppForm.dart';
 
 class CreatePin extends StatefulWidget {
-  const CreatePin({super.key});
+  final String userId;
+  final String name;
+  const CreatePin({super.key, required this.userId, required this.name});
 
   @override
   State<CreatePin> createState() => _CreatePinState();
@@ -92,7 +94,7 @@ class _CreatePinState extends State<CreatePin> {
               height: 55,
               child: ElevatedButton(
                   onPressed: () {
-                    GoRouter.of(context).push('/profile/create/confirmPin');
+                    GoRouter.of(context).push('/profile/create/confirmPin', extra: {'userId': widget.userId, 'name': widget.name, 'pin': pinController.text});
                   },
                   style: AppForm.darkButton,
                   child: const Text(
