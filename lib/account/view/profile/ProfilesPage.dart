@@ -77,10 +77,11 @@ class _ProfilesPageState extends State<ProfilesPage> {
                   height: screenSize.height * 0.02,
                 ),
                 isLoading
-                    ? Center(child: LoadingAnimationWidget.hexagonDots(
-                      color: AppColors.primaryColor,
-                      size: 64,
-                    ))
+                    ? Center(
+                        child: LoadingAnimationWidget.hexagonDots(
+                        color: AppColors.primaryColor,
+                        size: 64,
+                      ))
                     : ListView.separated(
                         itemCount: profileList.length + 1,
                         scrollDirection: Axis.vertical,
@@ -94,8 +95,7 @@ class _ProfilesPageState extends State<ProfilesPage> {
                               title: const Text('Create Profile'),
                               leading: const Icon(Icons.add),
                               onTap: () {
-                                GoRouter.of(context)
-                                    .push('/profile/create/name');
+                                GoRouter.of(context).go('/profile/create');
                                 displayProfiles();
                               },
                               tileColor: AppColors.dirtyWhite,
@@ -112,7 +112,12 @@ class _ProfilesPageState extends State<ProfilesPage> {
                               title: Text(profileList[index].name ??
                                   'Profile ${index + 1}'),
                               onTap: () {
-                                // Handle profile tap
+                                GoRouter.of(context)
+                                    .push('/profile/login/enterPin', extra: {
+                                  'userId': widget.userId,
+                                  'name': profileList[index].name,
+                                  'pin': profileList[index].pin
+                                });
                               },
                               leading: const Icon(Icons.person),
                               trailing: PopupMenuButton(

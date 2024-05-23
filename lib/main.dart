@@ -55,9 +55,7 @@ class _MainState extends State<Main> {
         path: '/profile/list',
         builder: (context, state) {
           final extra = state.extra as String;
-
           final userId = extra;
-
           return ProfilesPage( userId: userId);
         }),
     GoRoute(
@@ -95,15 +93,15 @@ class _MainState extends State<Main> {
 
         final userId =  extra['userId'] ?? '';
         final name = extra['name'] ?? '';
+        final pin = extra['pin'] ?? '';
 
-        return EnterPin(userId: userId, name: name);
+        return EnterPin(userId: userId, name: name, pin: pin);
       },
     ),
     GoRoute(
       path: '/product/list',
       builder: (context, state) {
         final extra = state.extra as Map<String, String>;
-
         final userId = extra['userId'] ?? '';
         final name = extra['name'] ?? '';
         return HomePage(userId: userId, name: name);
