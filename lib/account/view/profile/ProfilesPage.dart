@@ -109,8 +109,7 @@ class _ProfilesPageState extends State<ProfilesPage> {
                             );
                           } else {
                             return ListTile(
-                              title: Text(profileList[index].name ??
-                                  'Profile ${index + 1}'),
+                              title: Text(profileList[index].name),
                               onTap: () {
                                 GoRouter.of(context)
                                     .push('/profile/login/enterPin', extra: {
