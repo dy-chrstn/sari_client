@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/theme/colors.dart';
-import '../../utils/theme/typography.dart';
+import '../utils/theme/colors.dart';
+import '../utils/theme/typography.dart';
 
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+class Dashboard extends StatefulWidget {
+  const Dashboard({super.key});
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  State<Dashboard> createState() => _DashboardState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
@@ -18,7 +18,7 @@ class _SettingsPageState extends State<SettingsPage> {
       backgroundColor: AppColors.backgroundColor,
       body: Center(
         child: Text(
-          'Settings',
+          'Analytics',
           style: AppTypography.heading1,
         ),
       ),

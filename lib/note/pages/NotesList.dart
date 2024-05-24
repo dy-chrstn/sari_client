@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:sari/common/utils/theme/colors.dart';
+import 'package:sari/common/utils/theme/typography.dart';
 
-import '../../utils/theme/colors.dart';
-import '../../utils/theme/typography.dart';
-
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+class NotesList extends StatefulWidget {
+  const NotesList({super.key});
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  State<NotesList> createState() => _NotesListState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _NotesListState extends State<NotesList> {
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
@@ -18,7 +17,7 @@ class _SettingsPageState extends State<SettingsPage> {
       backgroundColor: AppColors.backgroundColor,
       body: Center(
         child: Text(
-          'Settings',
+          'Notes List',
           style: AppTypography.heading1,
         ),
       ),

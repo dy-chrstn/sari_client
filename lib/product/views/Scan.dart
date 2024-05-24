@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/theme/colors.dart';
-import '../../utils/theme/typography.dart';
+import '../../common/utils/theme/colors.dart';
+import '../../common/utils/theme/typography.dart';
 
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+class ScanQr extends StatefulWidget {
+  const ScanQr({super.key});
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  State<ScanQr> createState() => _ScanQrState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _ScanQrState extends State<ScanQr> {
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
@@ -18,7 +18,7 @@ class _SettingsPageState extends State<SettingsPage> {
       backgroundColor: AppColors.backgroundColor,
       body: Center(
         child: Text(
-          'Settings',
+          'Scan QR Code',
           style: AppTypography.heading1,
         ),
       ),

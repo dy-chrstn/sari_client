@@ -87,7 +87,7 @@ class _EnterPinState extends State<EnterPin> {
               obscureText: true,
               onCompleted: (value) {
                 if (value == widget.pin.toString()) {
-                  GoRouter.of(context).go('/product/list',
+                  GoRouter.of(context).go('/home',
                       extra: {'userId': widget.userId, 'name': widget.name});
                 } else {
                   QuickAlert.show(
@@ -121,7 +121,6 @@ class _EnterPinState extends State<EnterPin> {
             SizedBox(
               height: screenSize.height * 0.10,
             ),
-
             SizedBox(
               width: double.infinity,
               height: 55,

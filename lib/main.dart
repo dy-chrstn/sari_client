@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sari/account/view/profile/EnterPin.dart';
+import 'package:sari/common/page/BottomNavBar.dart';
 import 'package:sari/common/page/LoadingScreen.dart';
 import 'package:sari/common/page/SplashScreen.dart';
 import 'package:sari/account/view/profile/ConfirmPinPage.dart';
@@ -112,6 +113,13 @@ class _MainState extends State<Main> {
         return HomePage(userId: userId, name: name);
       },
     ),
+    GoRoute(path: '/home', builder: (context, state) {
+      final extra = state.extra as Map<String, String>;
+      final userId = extra['userId'] ?? '';
+      final name = extra['name'] ?? '';
+      return BottomNavBar(userId: userId, name: name);
+    }),
+
   ]);
 
   @override
