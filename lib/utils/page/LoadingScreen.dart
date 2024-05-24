@@ -36,7 +36,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
         
         Logger().d('Response: $response');
 
-        if (response['code'] == 0) {
+        if (response['messages']['code'] == 0) {
           GoRouter.of(context).go('/profile/list', extra: response['response']['userId']);
         } else {
           QuickAlert.show(

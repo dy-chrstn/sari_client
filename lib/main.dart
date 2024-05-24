@@ -93,7 +93,7 @@ class _MainState extends State<Main> {
     GoRoute(
       path: '/profile/login/enterPin',
       builder: (context, state) {
-        final extra = state.extra as Map<String, String>;
+        final extra = state.extra as Map<String, dynamic>;
 
         final userId = extra['userId'] ?? '';
         final name = extra['name'] ?? '';

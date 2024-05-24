@@ -66,6 +66,7 @@ class _ProfileNameState extends State<ProfileName> {
             ),
             TextField(
               controller: nameController,
+              keyboardType: TextInputType.name,
               decoration: AppForm.whiteField.copyWith(labelText: 'Name'),
             ),
             SizedBox(

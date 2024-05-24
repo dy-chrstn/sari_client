@@ -35,7 +35,7 @@ Future<PersonalAccModel> loginPersonalAcc(String email, String password) async {
   }
 }
 
-Future<PersonalAccModel> registerPersonalAcc(
+Future<dynamic> registerPersonalAcc(
     String owner, String name, String pin) async {
   String token = await getToken();
   Logger().d('token: $token');
@@ -55,9 +55,9 @@ Future<PersonalAccModel> registerPersonalAcc(
 
     if (data['messages']['code'] == 0) {
       final personalAcc = PersonalAccModel.fromJson(data['response']);
-      Logger().d(data['response']);
+      Logger().d('Register Response: ${data['response']}');
 
-      return personalAcc;
+      return data;
     } else {
       Logger().e(data['messages']['message']);
       return data['messages']['message'];

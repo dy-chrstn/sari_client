@@ -93,7 +93,7 @@ class _ProfilesPageState extends State<ProfilesPage> {
                               title: const Text('Create Profile'),
                               leading: const Icon(Icons.add),
                               onTap: () {
-                                GoRouter.of(context).go(
+                                GoRouter.of(context).push(
                                     '/profile/create/name',
                                     extra: widget.userId);
                                 // displayProfiles();

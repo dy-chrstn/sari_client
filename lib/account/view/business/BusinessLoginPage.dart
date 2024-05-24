@@ -63,10 +63,12 @@ class _LoginPageState extends State<LoginPage> {
               TextField(
                   controller: usernameController,
                   textInputAction: TextInputAction.next,
+                  
                   decoration: AppForm.whiteField.copyWith(
                     labelText: 'Username',
                     errorText:
                         isErrorUsername ? 'Username cannot be empty' : null,
+                    
                   )),
               SizedBox(
                 height: screenSize.height * 0.02,
