@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sari/common/settings/views/Settings.dart';
+import 'package:sari/common/page/Settings.dart';
 import 'package:sari/common/utils/theme/colors.dart';
 import 'package:sari/common/utils/theme/typography.dart';
 import 'package:sari/product/views/ProductView.dart';

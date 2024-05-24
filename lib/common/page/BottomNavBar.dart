@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:sari/common/page/Analytics.dart';
-import 'package:sari/common/settings/views/Settings.dart';
+import 'package:sari/common/page/Settings.dart';
 import 'package:sari/common/utils/theme/colors.dart';
 import 'package:sari/product/views/Scan.dart';
 

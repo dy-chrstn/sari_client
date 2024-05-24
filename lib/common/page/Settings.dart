@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/theme/colors.dart';
-import '../../utils/theme/typography.dart';
+import '../utils/theme/colors.dart';
+import '../utils/theme/typography.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
