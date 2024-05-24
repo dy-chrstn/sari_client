@@ -7,7 +7,6 @@ import 'package:sari/common/utils/theme/colors.dart';
 import 'package:sari/common/utils/theme/typography.dart';
 import 'package:sari/product/services/product.dart';
 import 'package:sari/product/views/ProductView.dart';
-
 import '../model/product.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,14 +31,12 @@ class _HomePageState extends State<HomePage> {
   Future<void> fetchProducts() async {
     try {
       final products = await getProductList(widget.userId);
-      // Logger().d('Products: $products');
       setState(() {
         productList = products;
       });
     } catch (e) {
-      // Logger().e('Failed to fetch products: $e');
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Failed to fetch products')));
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Failed to fetch products')));
     }
   }
 
@@ -74,44 +71,47 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         body: RefreshIndicator(
-          onRefresh: () => Future.delayed(Duration(seconds: 1), fetchProducts), 
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                SizedBox(height: screenSize.height * 0.03),
-                productList.isNotEmpty
-                    ? GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 8.0,
-                          mainAxisSpacing: 8.0,
-                        ),
-                        itemCount: productList.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return Card(
-                            child: Column(
-                              children: [
-                                Text( productList[index].name),
-                                Text( productList[index].dp.toString()),
-                                Text( productList[index].srp.toString()),
-
-                              ],
-                            )
-                          );
-                        },
-                      )
-                    : const Center(
+          onRefresh: () => fetchProducts(),
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  SizedBox(height: screenSize.height * 0.03),
+                  productList.isNotEmpty
+                      ? GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 8.0,
+                            mainAxisSpacing: 8.0,
+                          ),
+                          itemCount: productList.length,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return Card(
+                              child: Column(
+                                children: [
+                                  Text(productList[index].name),
+                                  Text(productList[index].dp.toString()),
+                                  Text(productList[index].srp.toString()),
+                                ],
+                              ),
+                            );
+                          },
+                        )
+                      : const Center(
                           child: LoadingIndicator(
                           indicatorType: Indicator.ballClipRotateMultiple,
                           colors: [AppColors.primaryColor],
                           strokeWidth: 3,
                           backgroundColor: Colors.transparent,
                           pathBackgroundColor: Colors.transparent,
-                        ))
-              ],
+                        )),
+                ],
+              ),
             ),
           ),
         ),
