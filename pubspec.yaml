@@ -69,6 +69,7 @@ dependencies:
   pinput: ^4.0.0
   quickalert: ^1.1.0
   loading_animation_widget: ^1.2.1
+  persistent_bottom_nav_bar_v2: ^5.2.3
 
 dev_dependencies:
   flutter_test:
