@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:quickalert/quickalert.dart';
-import 'package:sari/account/model/personalAcc.dart';
 import 'package:sari/account/services/personalAcc.dart';
 
 import '../../../utils/theme/colors.dart';

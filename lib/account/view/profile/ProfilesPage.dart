@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:logger/logger.dart';
 import 'package:sari/account/services/personalAcc.dart';
 import 'package:sari/utils/theme/colors.dart';
-
 import '../../../utils/theme/typography.dart';
-import '../../model/personalAcc.dart';
+
 
 class ProfilesPage extends StatefulWidget {
   final String userId;
