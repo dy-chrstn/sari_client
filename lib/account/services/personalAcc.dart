@@ -129,7 +129,7 @@ Future<PersonalAccModel> updateProfile(
   }
 }
 
-Future<PersonalAccModel> deleteProfile(String owner) async {
+Future<dynamic> deleteProfile(String owner) async {
   String token = await getToken();
   Logger().d('token: $token');
 
@@ -140,16 +140,16 @@ Future<PersonalAccModel> deleteProfile(String owner) async {
       'Authorization': 'Bearer $token'
     });
     final data = jsonDecode(response.body);
-    // Logger().d('Response: $data');
+    Logger().d('Delete Response: $data');
 
     if (data['messages']['code'] == 0) {
-      final personalAcc = PersonalAccModel.fromJson(data['response']);
+      // final personalAcc = PersonalAccModel.fromJson(data['response']);
       // Logger().d(data['response']);
 
-      return personalAcc;
+      return data;
     } else {
       // Logger().e(data['messages']['message']);
-      return data['messages']['message'];
+      return data;
     }
   } catch (e) {
     Logger().e(e);

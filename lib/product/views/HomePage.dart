@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         body: RefreshIndicator(
-          onRefresh: () => Future.delayed(Duration(seconds: 1), fetchProducts), // Wrap fetchProducts in a Future constructor
+          onRefresh: () => Future.delayed(Duration(seconds: 1), fetchProducts), 
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -96,13 +96,13 @@ class _HomePageState extends State<HomePage> {
                                 Text( productList[index].name),
                                 Text( productList[index].dp.toString()),
                                 Text( productList[index].srp.toString()),
-                                // Text( productList[index].prices.toString()),
+
                               ],
                             )
                           );
                         },
                       )
-                    : const Center(child: CircularProgressIndicator()), // Show a loading indicator while fetching products
+                    : const Center(child: CircularProgressIndicator()), 
               ],
             ),
           ),
