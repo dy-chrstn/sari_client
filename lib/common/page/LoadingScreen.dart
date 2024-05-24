@@ -47,12 +47,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
             confirmBtnText: 'Confirm',
             confirmBtnColor: AppColors.primaryColor,
             onConfirmBtnTap: () {
-              GoRouter.of(context)
-                  .go('/business/login', extra: response['message']);
+              GoRouter.of(context).go('/business/login', extra: response['message']);
             },
+            barrierDismissible: false,
           );
         }
-      }else if( widget.fromPage == 'register'){
+      } else if (widget.fromPage == 'register') {
         response = await registerBusinessAcc(widget.username, widget.email, widget.password);
 
         String message = response['message'];
@@ -69,9 +69,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
             confirmBtnText: 'Confirm',
             confirmBtnColor: AppColors.primaryColor,
             onConfirmBtnTap: () {
-              GoRouter.of(context)
-                  .go('/business/register', extra: response['message']);
+              GoRouter.of(context).go('/business/register', extra: response['message']);
             },
+            barrierDismissible: false,
           );
         }
       }
