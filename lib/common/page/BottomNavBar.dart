@@ -29,31 +29,31 @@ class BottomNavBar extends StatelessWidget {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.home),
+        icon: const Icon(Icons.home),
         title: ("Home"),
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.analytics),
+        icon: const Icon(Icons.analytics),
         title: ("Analytics"),
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.qr_code_scanner),
+        icon: const Icon(Icons.qr_code_scanner),
         title: ("Scan"),
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.note_alt),
+        icon: const Icon(Icons.note_alt),
         title: ("Notes"),
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.settings),
+        icon: const Icon(Icons.settings),
         title: ("Settings"),
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: Colors.grey,

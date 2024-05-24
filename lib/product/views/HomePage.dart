@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sari/common/settings/views/Settings.dart';
 import 'package:sari/common/utils/theme/colors.dart';
 import 'package:sari/common/utils/theme/typography.dart';
+import 'package:sari/product/views/ProductView.dart';
 
 class HomePage extends StatefulWidget {
   final String userId;
@@ -19,6 +22,14 @@ class _HomePageState extends State<HomePage> {
         child: Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.backgroundColor,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.primaryColor,
+        onPressed: () {
+          GoRouter.of(context).push('/product/view');
+        },
+        shape: const CircleBorder(),
+        child: const Icon(Icons.add, color: AppColors.dirtyWhite),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
@@ -29,7 +40,8 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('Welcome, ${widget.name}', style: AppTypography.heading1),
+                  Text('Welcome, ${widget.name}',
+                      style: AppTypography.heading1),
                   SizedBox(
                     height: screenSize.height * 0.02,
                   ),

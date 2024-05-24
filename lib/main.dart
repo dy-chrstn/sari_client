@@ -12,6 +12,7 @@ import 'package:sari/account/view/profile/ProfileNamePage.dart';
 import 'package:sari/account/view/profile/ProfilesPage.dart';
 import 'package:sari/account/view/business/BusinessRegisterPage.dart';
 import 'package:sari/product/views/HomePage.dart';
+import 'package:sari/product/views/ProductView.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -119,6 +120,11 @@ class _MainState extends State<Main> {
       final name = extra['name'] ?? '';
       return BottomNavBar(userId: userId, name: name);
     }),
+
+    GoRoute(
+        path: '/product/view',
+        builder: (context, state) => const ProductView()),
+
 
   ]);
 
