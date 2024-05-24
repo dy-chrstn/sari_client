@@ -4,7 +4,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:logger/logger.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:sari/account/services/businessAcc.dart';
-import 'package:sari/utils/theme/colors.dart';
+import 'package:sari/common/utils/theme/colors.dart';
 
 class LoadingScreen extends StatefulWidget {
   final String username;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sari/utils/theme/colors.dart';
-import 'package:sari/utils/theme/constants.dart';
+import 'package:sari/common/utils/theme/colors.dart';
+import 'package:sari/common/utils/theme/constants.dart';
 
 class AppTypography {
   static const TextStyle heading1 = TextStyle(

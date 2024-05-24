@@ -3,9 +3,9 @@ import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:quickalert/quickalert.dart';
 
-import '../../../utils/theme/colors.dart';
-import '../../../utils/theme/typography.dart';
-import '../../../widgets/form/AppForm.dart';
+import '../../../common/utils/theme/colors.dart';
+import '../../../common/utils/theme/typography.dart';
+import '../../../common/widgets/form/AppForm.dart';
 
 class EnterPin extends StatefulWidget {
   final String userId;

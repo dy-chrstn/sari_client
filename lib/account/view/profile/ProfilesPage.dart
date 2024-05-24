@@ -4,8 +4,8 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:logger/logger.dart';
 import 'package:sari/account/model/personalAcc.dart';
 import 'package:sari/account/services/personalAcc.dart';
-import 'package:sari/utils/theme/colors.dart';
-import '../../../utils/theme/typography.dart';
+import 'package:sari/common/utils/theme/colors.dart';
+import '../../../common/utils/theme/typography.dart';
 
 
 class ProfilesPage extends StatefulWidget {

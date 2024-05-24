@@ -1,6 +1,6 @@
 import 'dart:convert';
-import '../../utils/env.dart';
-import '../../token/services/token.dart';
+import '../../common/utils/env.dart';
+import '../../common/token/services/token.dart';
 import '../model/note.dart';
 import 'package:http/http.dart' as http;
 

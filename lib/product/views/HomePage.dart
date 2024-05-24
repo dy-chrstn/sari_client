@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sari/utils/theme/colors.dart';
-import 'package:sari/utils/theme/typography.dart';
+import 'package:sari/common/utils/theme/colors.dart';
+import 'package:sari/common/utils/theme/typography.dart';
 
 class HomePage extends StatefulWidget {
   final String userId;

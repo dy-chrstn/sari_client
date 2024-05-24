@@ -1,9 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sari/utils/theme/colors.dart';
-import 'package:sari/utils/theme/typography.dart';
-import 'package:sari/widgets/form/AppForm.dart';
+import 'package:sari/common/utils/theme/colors.dart';
+import 'package:sari/common/utils/theme/typography.dart';
+import 'package:sari/common/widgets/form/AppForm.dart';
 
 class LoginPage extends StatefulWidget {
   final dynamic message;

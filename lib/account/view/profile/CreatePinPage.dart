@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
-import 'package:sari/utils/theme/colors.dart';
+import 'package:sari/common/utils/theme/colors.dart';
 
-import '../../../utils/theme/typography.dart';
-import '../../../widgets/form/AppForm.dart';
+import '../../../common/utils/theme/typography.dart';
+import '../../../common/widgets/form/AppForm.dart';
 
 class CreatePin extends StatefulWidget {
   final String userId;

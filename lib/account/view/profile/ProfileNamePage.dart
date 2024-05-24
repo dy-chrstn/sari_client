@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
-import 'package:sari/widgets/form/AppForm.dart';
-import '../../../utils/theme/colors.dart';
-import '../../../utils/theme/typography.dart';
+import 'package:sari/common/widgets/form/AppForm.dart';
+import '../../../common/utils/theme/colors.dart';
+import '../../../common/utils/theme/typography.dart';
 
 class ProfileName extends StatefulWidget {
   final String userId;

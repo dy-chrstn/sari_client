@@ -5,13 +5,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
-import 'package:sari/utils/env.dart';
-import 'package:sari/utils/theme/colors.dart';
-import 'package:sari/utils/theme/typography.dart';
+import 'package:sari/common/utils/env.dart';
+import 'package:sari/common/utils/theme/colors.dart';
+import 'package:sari/common/utils/theme/typography.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../token/services/token.dart';
-import '../../../widgets/form/AppForm.dart';
+import '../../../common/token/services/token.dart';
+import '../../../common/widgets/form/AppForm.dart';
 
 class RegisterBusinessAcc extends StatefulWidget {
   const RegisterBusinessAcc({super.key});

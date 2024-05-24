@@ -1,6 +1,6 @@
-import 'package:sari/token/services/token.dart';
+import 'package:sari/common/token/services/token.dart';
 import 'package:sari/account/model/personalAcc.dart';
-import 'package:sari/utils/env.dart';
+import 'package:sari/common/utils/env.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';

@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:sari/product/model/product.dart';
-import 'package:sari/token/services/token.dart';
+import 'package:sari/common/token/services/token.dart';
 import 'package:http/http.dart' as http;
-import '../../utils/env.dart';
+import '../../common/utils/env.dart';
 
 Future<ProductModel> getProduct(String productId) async {
   String token = await getToken();
