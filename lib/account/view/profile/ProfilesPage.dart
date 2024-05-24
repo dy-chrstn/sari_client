@@ -176,7 +176,7 @@ class _ProfilesPageState extends State<ProfilesPage> {
                                           SnackBar(
                                             content: Text(
                                                 response['messages']['message']),
-                                            backgroundColor: Colors.red,
+                                            backgroundColor: Colors.green,
                                           ),
                                         );
                                         displayProfiles();
@@ -185,7 +185,7 @@ class _ProfilesPageState extends State<ProfilesPage> {
                                           SnackBar(
                                             content: Text(
                                                 response['messages']['message']),
-                                            backgroundColor: Colors.green,
+                                            backgroundColor: Colors.red,
                                           ),
                                         );
                                         displayProfiles();
