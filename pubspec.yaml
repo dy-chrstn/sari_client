@@ -70,6 +70,7 @@ dependencies:
   quickalert: ^1.1.0
   loading_animation_widget: ^1.2.1
   persistent_bottom_nav_bar: any
+  loading_indicator: ^3.1.1
 
 dev_dependencies:
   flutter_test:

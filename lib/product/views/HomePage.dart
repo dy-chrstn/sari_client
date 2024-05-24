@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:logger/logger.dart';
 import 'package:sari/common/page/Settings.dart';
 import 'package:sari/common/utils/theme/colors.dart';
@@ -102,7 +103,14 @@ class _HomePageState extends State<HomePage> {
                           );
                         },
                       )
-                    : const Center(child: CircularProgressIndicator()), 
+                    : const Center(
+                          child: LoadingIndicator(
+                          indicatorType: Indicator.ballClipRotateMultiple,
+                          colors: [AppColors.primaryColor],
+                          strokeWidth: 3,
+                          backgroundColor: Colors.transparent,
+                          pathBackgroundColor: Colors.transparent,
+                        ))
               ],
             ),
           ),
