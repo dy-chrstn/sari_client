@@ -120,7 +120,6 @@ class _ProfileNameState extends State<ProfileName> {
                       setState(() {
                         nameError = 'Name cannot be empty';
                       });
-                    
                     } else if (nameError != null && nameError!.isNotEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -128,9 +127,12 @@ class _ProfileNameState extends State<ProfileName> {
                           backgroundColor: Colors.red,
                         ),
                       );
-                    }else if (nameError == null) {
+                    } else if (nameError == null) {
                       GoRouter.of(context).push('/profile/create/createPin',
-                          extra: {'userId': widget.userId, 'name': nameController.text});
+                          extra: {
+                            'userId': widget.userId,
+                            'name': nameController.text
+                          });
                       nameController.clear();
                     }
                   },
