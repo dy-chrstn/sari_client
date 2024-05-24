@@ -26,7 +26,7 @@ Future<dynamic> loginBusinessAcc(String email, String password) async {
       return data;
     } else {
       // Logger().e(data['messages']['message']);
-      return data['messages'];
+      return data;
     }
   } catch (e) {
     // Logger().e(e);

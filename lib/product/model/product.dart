@@ -1,6 +1,19 @@
-
-
 class ProductModel {
+  String id;
+  String userId;
+  String name;
+  int dp;
+  int srp;
+  String description;
+  String imageUrl;
+  List<String> types;
+  List<String> sizes;
+  List<int> prices;
+  DateTime createdAt;
+  DateTime updatedAt;
+  String createdBy;
+  String updatedBy;
+
   ProductModel({
     required this.id,
     required this.userId,
@@ -18,52 +31,22 @@ class ProductModel {
     required this.updatedBy,
   });
 
-  String id;
-  String userId;
-  String name;
-  String dp;
-  String srp;
-  String description;
-  String imageUrl;
-  List<String> types;
-  List<String> sizes;
-  List<String> prices;
-  DateTime createdAt;
-  DateTime updatedAt;
-  String createdBy;
-  String updatedBy;
-
-  factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
-    id: json["id"],
-    userId: json["userId"],
-    name: json["name"],
-    dp: json["dp"],
-    srp: json["srp"],
-    description: json["description"],
-    imageUrl: json["imageUrl"],
-    types: List<String>.from(json["types"].map((x) => x)),
-    sizes: List<String>.from(json["sizes"].map((x) => x)),
-    prices: List<String>.from(json["prices"].map((x) => x)),
-    createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
-    createdBy: json["createdBy"],
-    updatedBy: json["updatedBy"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "userId": userId,
-    "name": name,
-    "dp": dp,
-    "srp": srp,
-    "description": description,
-    "imageUrl": imageUrl,
-    "types": List<dynamic>.from(types.map((x) => x)),
-    "sizes": List<dynamic>.from(sizes.map((x) => x)),
-    "prices": List<dynamic>.from(prices.map((x) => x)),
-    "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
-    "createdBy": createdBy,
-    "updatedBy": updatedBy,
-  };
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    return ProductModel(
+      id: json['_id'] ?? '',
+      userId: json['userId'] ?? '',
+      name: json['name'] ?? '',
+      dp: json['dp'] ?? '',
+      srp: json['srp'] ?? '',
+      description: json['description'] ?? '',
+      imageUrl: json['imageUrl'] ?? '',
+      types: (json['types'] as List<dynamic>?)?.map((e) => e.toString()).toList() ?? [],
+      sizes: (json['sizes'] as List<dynamic>?)?.map((e) => e.toString()).toList() ?? [],
+      prices: (List<int>.from(json['price'] ?? [])),
+      createdAt: DateTime.parse(json['createdAt'] ?? ''),
+      updatedAt: DateTime.parse(json['updatedAt'] ?? ''),
+      createdBy: json['createdBy'] ?? '',
+      updatedBy: json['updatedBy'] ?? '',
+    );
+  }
 }

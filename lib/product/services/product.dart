@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:logger/logger.dart';
 import 'package:sari/product/model/product.dart';
 import 'package:sari/common/token/services/token.dart';
 import 'package:http/http.dart' as http;
@@ -44,13 +45,13 @@ Future<List<ProductModel>> getProductList(String userId) async {
       'Authorization': 'Bearer $token'
     });
     final data = jsonDecode(response.body);
-    // Logger().d(data);
+    Logger().d(' data: $data');
 
     if (data['messages']['code'] == 0) {
       final productList = <ProductModel>[];
       data['response']
           .forEach((e) => productList.add(ProductModel.fromJson(e)));
-      // Logger().d(data['response']);
+      // Logger().d('productList: $productList');
 
       return productList;
     } else {
