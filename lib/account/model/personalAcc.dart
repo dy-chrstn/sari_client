@@ -2,7 +2,7 @@
 class PersonalAccModel {
   final String owner;
   final String name;
-  final int pin;
+  final String pin;
 
   PersonalAccModel({
     required this.owner,

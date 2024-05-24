@@ -71,6 +71,9 @@ class _CreatePinState extends State<CreatePin> {
               autofocus: true,
               keyboardType: TextInputType.number,
               obscureText: true,
+              onCompleted: (value) {
+                GoRouter.of(context).push('/profile/create/confirmPin', extra: {'userId': widget.userId, 'name': widget.name, 'pin': pinController.text});
+              },
               defaultPinTheme: PinTheme(
                 width: 64,
                 height: 64,
@@ -88,19 +91,6 @@ class _CreatePinState extends State<CreatePin> {
             ),
             SizedBox(
               height: screenSize.height * 0.10,
-            ),
-            SizedBox(
-              width: double.infinity,
-              height: 55,
-              child: ElevatedButton(
-                  onPressed: () {
-                    GoRouter.of(context).push('/profile/create/confirmPin', extra: {'userId': widget.userId, 'name': widget.name, 'pin': pinController.text});
-                  },
-                  style: AppForm.darkButton,
-                  child: const Text(
-                    'NEXT',
-                    style: TextStyle(color: AppColors.dirtyWhite),
-                  )),
             ),
             SizedBox(
               height: screenSize.height * 0.02,

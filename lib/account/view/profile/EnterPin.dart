@@ -10,7 +10,7 @@ import '../../../widgets/form/AppForm.dart';
 class EnterPin extends StatefulWidget {
   final String userId;
   final String name;
-  final int pin;
+  final String pin;
   const EnterPin(
       {super.key, required this.userId, required this.name, required this.pin});
 

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:sari/account/model/personalAcc.dart';
+import 'package:sari/account/services/personalAcc.dart';
 
 import '../../../utils/theme/colors.dart';
 import '../../../utils/theme/typography.dart';
@@ -10,20 +13,22 @@ class ConfirmPin extends StatefulWidget {
   final String userId;
   final String name;
   final String pin;
-  const ConfirmPin({super.key, required this.userId, required this.name, required this.pin});
+  const ConfirmPin(
+      {super.key, required this.userId, required this.name, required this.pin});
 
   @override
   State<ConfirmPin> createState() => _ConfirmPinState();
 }
 
 class _ConfirmPinState extends State<ConfirmPin> {
-   TextEditingController pinController = TextEditingController();
+  TextEditingController pinController = TextEditingController();
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return SafeArea(
-      child: Scaffold(
+        child: Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.backgroundColor,
       body: Padding(
@@ -71,6 +76,58 @@ class _ConfirmPinState extends State<ConfirmPin> {
               autofocus: true,
               keyboardType: TextInputType.number,
               obscureText: true,
+              onCompleted: (value) async {
+                if (value == widget.pin) {
+                  try {
+                    dynamic response = await registerPersonalAcc(
+                        widget.userId, widget.name, value);
+
+                    if (response._id != null) {
+                      QuickAlert.show(
+                          context: context,
+                          title: 'Profile Created',
+                          type: QuickAlertType.success,
+                          confirmBtnText: 'Confirm',
+                          confirmBtnColor: AppColors.primaryColor,
+                          onConfirmBtnTap: () => GoRouter.of(context)
+                                  .go('/product/list', extra: {
+                                'userId': widget.userId,
+                                'name': widget.name
+                              }));
+                    }
+                  } catch (e) {
+                    QuickAlert.show(
+                        context: context,
+                        title: 'Profile Create Error',
+                        type: QuickAlertType.error,
+                        text: 'Internal Server Error',
+                        confirmBtnText: 'Confirm',
+                        confirmBtnColor: AppColors.primaryColor,
+                        onConfirmBtnTap: () => GoRouter.of(context).pop());
+                  }
+
+                  // QuickAlert.show(
+                  //     context: context,
+                  //     type: QuickAlertType.success,
+                  //     title: 'Profile Created',
+                  //     confirmBtnText: 'Confirm',
+                  //     confirmBtnColor: AppColors.primaryColor,
+                  //     onConfirmBtnTap: () => GoRouter.of(context)
+                  //             .go('/product/list', extra: {
+                  //           'userId': widget.userId,
+                  //           'name': widget.name
+                  //         }));
+                } else {
+                  QuickAlert.show(
+                      context: context,
+                      title: 'Profile Create Error',
+                      type: QuickAlertType.error,
+                      text: 'Pin does not match',
+                      confirmBtnText: 'Confirm',
+                      confirmBtnColor: AppColors.primaryColor,
+                      onConfirmBtnTap: () => GoRouter.of(context).pop());
+                }
+              },
               defaultPinTheme: PinTheme(
                 width: 64,
                 height: 64,
@@ -93,8 +150,57 @@ class _ConfirmPinState extends State<ConfirmPin> {
               width: double.infinity,
               height: 55,
               child: ElevatedButton(
-                  onPressed: () {
-                    GoRouter.of(context).go('/product/list');
+                  onPressed: () async {
+                    if (pinController.text == widget.pin) {
+                      try {
+                        dynamic response = await registerPersonalAcc(
+                            widget.userId, widget.name, pinController.text);
+
+                        if ( response != null) {
+                          QuickAlert.show(
+                              context: context,
+                              title: 'Profile Created',
+                              type: QuickAlertType.success,
+                              confirmBtnText: 'Confirm',
+                              confirmBtnColor: AppColors.primaryColor,
+                              onConfirmBtnTap: () => GoRouter.of(context)
+                                      .go('/product/list', extra: {
+                                    'userId': widget.userId,
+                                    'name': widget.name
+                                  }));
+                        }
+                      } catch (e) {
+                        QuickAlert.show(
+                            context: context,
+                            title: 'Profile Create Error',
+                            type: QuickAlertType.error,
+                            text: 'Internal Server Error',
+                            confirmBtnText: 'Confirm',
+                            confirmBtnColor: AppColors.primaryColor,
+                            onConfirmBtnTap: () => GoRouter.of(context).pop());
+                      }
+
+                      // QuickAlert.show(
+                      //     context: context,
+                      //     type: QuickAlertType.success,
+                      //     title: 'Profile Created',
+                      //     confirmBtnText: 'Confirm',
+                      //     confirmBtnColor: AppColors.primaryColor,
+                      //     onConfirmBtnTap: () => GoRouter.of(context)
+                      //             .go('/product/list', extra: {
+                      //           'userId': widget.userId,
+                      //           'name': widget.name
+                      //         }));
+                    } else {
+                      QuickAlert.show(
+                          context: context,
+                          title: 'Profile Create Error',
+                          type: QuickAlertType.error,
+                          text: 'Pin does not match',
+                          confirmBtnText: 'Confirm',
+                          confirmBtnColor: AppColors.primaryColor,
+                          onConfirmBtnTap: () => GoRouter.of(context).pop());
+                    }
                   },
                   style: AppForm.darkButton,
                   child: const Text(
@@ -123,5 +229,4 @@ class _ConfirmPinState extends State<ConfirmPin> {
       ),
     ));
   }
-
 }

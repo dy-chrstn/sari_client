@@ -17,7 +17,7 @@ class ProfilesPage extends StatefulWidget {
 }
 
 class _ProfilesPageState extends State<ProfilesPage> {
-  List<PersonalAccModel> profileList = [];
+  List<dynamic> profileList = [];
   bool isLoading = true;
 
   @override
@@ -33,7 +33,7 @@ class _ProfilesPageState extends State<ProfilesPage> {
 
     Future.delayed(const Duration(milliseconds: 1500));
 
-    List<PersonalAccModel> response = await getPersonalAccList(widget.userId);
+    List<dynamic> response = await getPersonalAccList(widget.userId);
 
     setState(() {
       profileList = response;
@@ -95,8 +95,10 @@ class _ProfilesPageState extends State<ProfilesPage> {
                               title: const Text('Create Profile'),
                               leading: const Icon(Icons.add),
                               onTap: () {
-                                GoRouter.of(context).go('/profile/create');
-                                displayProfiles();
+                                GoRouter.of(context).go(
+                                    '/profile/create/name',
+                                    extra: widget.userId);
+                                // displayProfiles();
                               },
                               tileColor: AppColors.dirtyWhite,
                               shape: RoundedRectangleBorder(

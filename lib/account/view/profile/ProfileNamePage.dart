@@ -6,13 +6,18 @@ import '../../../utils/theme/colors.dart';
 import '../../../utils/theme/typography.dart';
 
 class ProfileName extends StatefulWidget {
-  const ProfileName({super.key});
+  final String userId;
+  const ProfileName({super.key, required this.userId});
 
   @override
   State<ProfileName> createState() => _ProfileNameState();
 }
 
 class _ProfileNameState extends State<ProfileName> {
+
+  TextEditingController nameController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -60,6 +65,7 @@ class _ProfileNameState extends State<ProfileName> {
               height: screenSize.height * 0.03,
             ),
             TextField(
+              controller: nameController,
               decoration: AppForm.whiteField.copyWith(labelText: 'Name'),
             ),
             SizedBox(
@@ -70,7 +76,10 @@ class _ProfileNameState extends State<ProfileName> {
               height: 55,
               child: ElevatedButton(
                   onPressed: () {
-                    GoRouter.of(context).push('/profile/create/createPin');
+                    GoRouter.of(context).push('/profile/create/createPin', extra: {
+                      'userId': widget.userId,
+                      'name': nameController.text
+                    });
                   },
                   style: AppForm.darkButton,
                   child: const Text(

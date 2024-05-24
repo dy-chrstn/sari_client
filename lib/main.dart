@@ -56,20 +56,24 @@ class _MainState extends State<Main> {
         builder: (context, state) {
           final extra = state.extra as String;
           final userId = extra;
-          return ProfilesPage( userId: userId);
+          return ProfilesPage(userId: userId);
         }),
     GoRoute(
       path: '/profile/create/name',
-      builder: (context, state) => const ProfileName(),
+      builder: (context, state) {
+        final extra = state.extra as String;
+
+        final userId = extra;
+        return ProfileName(userId: userId);
+      },
     ),
     GoRoute(
       path: '/profile/create/createPin',
       builder: (context, state) {
-        final extra = state.extra as Map<String, dynamic>;
+        final extra = state.extra as Map<String, String>;
 
-        final userId =  extra['userId'] ?? '';
+        final userId = extra['userId'] ?? '';
         final name = extra['name'] ?? '';
-
 
         return CreatePin(userId: userId, name: name);
       },
@@ -79,7 +83,7 @@ class _MainState extends State<Main> {
       builder: (context, state) {
         final extra = state.extra as Map<String, dynamic>;
 
-        final userId =  extra['userId'] ?? '';
+        final userId = extra['userId'] ?? '';
         final name = extra['name'] ?? '';
         final pin = extra['pin'] ?? '';
 
@@ -89,9 +93,9 @@ class _MainState extends State<Main> {
     GoRoute(
       path: '/profile/login/enterPin',
       builder: (context, state) {
-        final extra = state.extra as Map<String, dynamic>;
+        final extra = state.extra as Map<String, String>;
 
-        final userId =  extra['userId'] ?? '';
+        final userId = extra['userId'] ?? '';
         final name = extra['name'] ?? '';
         final pin = extra['pin'] ?? '';
 
