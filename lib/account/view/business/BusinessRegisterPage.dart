@@ -319,8 +319,8 @@ class _RegisterBusinessAccState extends State<RegisterBusinessAcc> {
                                 // Call the navigation asynchronously and await its completion
                                 await GoRouter.of(context)
                                     .pushReplacement('/loading', extra: {
-                                  'username': username.text,
-                                  'email': email.text,
+                                  'username': username.text.trimRight(),
+                                  'email': email.text.trimRight(),
                                   'password': password.text,
                                   'fromPage': 'register'
                                 });

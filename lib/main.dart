@@ -61,10 +61,11 @@ class _MainState extends State<Main> {
     GoRoute(
       path: '/profile/create/name',
       builder: (context, state) {
-        final extra = state.extra as String;
+        final extra = state.extra as Map<String, dynamic>;
 
-        final userId = extra;
-        return ProfileName(userId: userId);
+        final userId = extra['userId'] ?? '';
+        final names = extra['names'] ?? [];
+        return ProfileName(userId: userId, names: names);
       },
     ),
     GoRoute(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:logger/logger.dart';
+import 'package:sari/account/model/personalAcc.dart';
 import 'package:sari/account/services/personalAcc.dart';
 import 'package:sari/utils/theme/colors.dart';
 import '../../../utils/theme/typography.dart';
@@ -16,6 +18,7 @@ class ProfilesPage extends StatefulWidget {
 
 class _ProfilesPageState extends State<ProfilesPage> {
   List<dynamic> profileList = [];
+  List<String> profileNames = [];
   bool isLoading = true;
 
   @override
@@ -31,7 +34,13 @@ class _ProfilesPageState extends State<ProfilesPage> {
 
     Future.delayed(const Duration(milliseconds: 1500));
 
-    List<dynamic> response = await getPersonalAccList(widget.userId);
+    List<PersonalAccModel> response = await getPersonalAccList(widget.userId);
+    Logger().i('Profiles Page Response: $response');
+
+
+    for (var i = 0; i < response.length; i++) {
+      profileNames.add(response[i].name.toLowerCase().trimRight());
+    }
 
     setState(() {
       profileList = response;
@@ -95,7 +104,10 @@ class _ProfilesPageState extends State<ProfilesPage> {
                               onTap: () {
                                 GoRouter.of(context).push(
                                     '/profile/create/name',
-                                    extra: widget.userId);
+                                    extra:{
+                                      'userId': widget.userId,
+                                      'names': profileNames
+                                    });
                                 // displayProfiles();
                               },
                               tileColor: AppColors.dirtyWhite,
