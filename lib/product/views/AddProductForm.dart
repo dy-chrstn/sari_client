@@ -213,6 +213,7 @@ class _AddProductFormState extends State<AddProductForm> {
                                     // Handle form submission logic here
                                   }
                                 },
+                                style: AppForm.darkButton,
                                 child: const Text('Submit'),
                               ),
                             ),
