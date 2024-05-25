@@ -29,10 +29,10 @@ class _HomePageState extends State<HomePage> {
   Future<void> fetchProducts() async {
     try {
       final products = await getProductList(widget.userId);
-      Logger().t(products);
+      // Logger().t(products);
       setState(() {
         productList = products;
-        Logger().t(productList);
+        // Logger().t(productList);
       });
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.primaryColor,
           onPressed: () {
-            GoRouter.of(context).push('/product/view');
+            GoRouter.of(context).push('/product/add', extra: widget.userId);
           },
           shape: const CircleBorder(),
           child: const Icon(Icons.add, color: AppColors.dirtyWhite),

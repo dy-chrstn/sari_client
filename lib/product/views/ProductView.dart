@@ -37,15 +37,15 @@ class _ProductViewState extends State<ProductView> {
                 style: AppTypography.heading1,
               ),
               Text(
-                'Product Name: $productName',
+                'Product Name: ${widget.fields.name}',
                 style: AppTypography.bodyText,
               ),
               Text(
-                'DP: $productDp',
+                'SRP: ${widget.fields.dp[0].toString()}',
                 style: AppTypography.bodyText,
               ),
               Text(
-                'SRP: $productSrp',
+                'Description: ${widget.fields.description}',
                 style: AppTypography.bodyText,
               ),
             ],

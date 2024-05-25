@@ -71,6 +71,10 @@ dependencies:
   loading_animation_widget: ^1.2.1
   persistent_bottom_nav_bar: any
   loading_indicator: ^3.1.1
+  flutter_form_builder: ^9.2.1
+  image_picker: ^1.1.1
+  firebase_storage: ^11.7.6
+  firebase_core: ^2.31.1
 
 dev_dependencies:
   flutter_test:

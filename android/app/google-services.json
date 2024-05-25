@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "340296512830",
+    "project_id": "sari-8d054",
+    "storage_bucket": "sari-8d054.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340296512830:android:c2d774ed504a2508f9e86f",
+        "android_client_info": {
+          "package_name": "com.example.sari"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyn-r54Ceyg9BZ1Y5CWUQ-k7ojTUlQMgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

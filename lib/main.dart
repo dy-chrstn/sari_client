@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
@@ -11,14 +12,26 @@ import 'package:sari/account/view/business/BusinessLoginPage.dart';
 import 'package:sari/account/view/profile/ProfileNamePage.dart';
 import 'package:sari/account/view/profile/ProfilesPage.dart';
 import 'package:sari/account/view/business/BusinessRegisterPage.dart';
+import 'package:sari/common/utils/env.dart';
 import 'package:sari/product/model/product.dart';
+import 'package:sari/product/views/AddProductForm.dart';
 import 'package:sari/product/views/HomePage.dart';
 import 'package:sari/product/views/ProductView.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      options: FirebaseOptions(
+          apiKey: apiKey,
+          authDomain: authDomain,
+          projectId: projectId,
+          storageBucket: storageBucket,
+          messagingSenderId: messagingSenderId,
+          appId: appId,
+          measurementId: measurementId));
   runApp(
-    Main(),
+    const Main(),
   );
 }
 
@@ -131,6 +144,14 @@ class _MainState extends State<Main> {
           final String userId = extra['userId'];
           final ProductModel fields = extra['fields'];
           return ProductView(userId: userId, fields: fields);
+        }),
+    GoRoute(
+        path: '/product/add',
+        builder: (context, state) {
+          final extra = state.extra as String;
+          final userId = extra;
+
+          return AddProductForm(userId: userId);
         }),
   ]);
 
