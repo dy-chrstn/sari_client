@@ -116,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                         } else {
                           await GoRouter.of(context).pushReplacement('/loading',
                               extra: {
-                                'username': usernameController.text.trimRight(),
+                                'username': usernameController.text.trimRight().toLowerCase(),
                                 'password': passwordController.text,
                                 'fromPage': 'login'
                               });
