@@ -87,6 +87,23 @@ class _AddProductFormState extends State<AddProductForm> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(height: screenSize.height * 0.02),
+                            Text('Pick an image',
+                                style: AppTypography.heading1.copyWith(
+                                    fontSize: 18, fontWeight: FontWeight.w500)),
+                            SizedBox(height: screenSize.height * 0.01),
+                            GestureDetector(
+                              onTap: _pickImage,
+                              child: Container(
+                                width: double.infinity,
+                                height: 200,
+                                color: AppColors.dirtyWhite,
+                                child: _image == null
+                                    ? const Icon(Icons.camera_alt,
+                                        size: 50, color: AppColors.textColor)
+                                    : Image.file(_image!, fit: BoxFit.cover),
+                              ),
+                            ),
+                            SizedBox(height: screenSize.height * 0.05),
                             FormBuilderTextField(
                                 name: 'Name',
                                 controller: name,
@@ -183,19 +200,6 @@ class _AddProductFormState extends State<AddProductForm> {
                                       color: AppColors.dirtyWhite,
                                     )),
                               ],
-                            ),
-                            SizedBox(height: screenSize.height * 0.05),
-                            GestureDetector(
-                              onTap: _pickImage,
-                              child: Container(
-                                width: double.infinity,
-                                height: 200,
-                                color: AppColors.dirtyWhite,
-                                child: _image == null
-                                    ? const Icon(Icons.camera_alt,
-                                        size: 50, color: AppColors.textColor)
-                                    : Image.file(_image!, fit: BoxFit.cover),
-                              ),
                             ),
                             SizedBox(height: screenSize.height * 0.05),
                             SizedBox(
