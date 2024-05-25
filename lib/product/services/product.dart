@@ -51,15 +51,15 @@ Future<List<ProductModel>> getProductList(String userId) async {
       final productList = <ProductModel>[];
       data['response']
           .forEach((e) => productList.add(ProductModel.fromJson(e)));
-      // Logger().d('productList: $productList');
+      Logger().d('productList: $productList');
 
       return productList;
     } else {
-      // Logger().e(data['messages']['message']);
+      Logger().e(data['messages']['message']);
       return data['messages']['message'];
     }
   } catch (e) {
-    // Logger().e(e);
+    Logger().e(e);
     throw e.toString();
   }
 }

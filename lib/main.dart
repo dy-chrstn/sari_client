@@ -11,6 +11,7 @@ import 'package:sari/account/view/business/BusinessLoginPage.dart';
 import 'package:sari/account/view/profile/ProfileNamePage.dart';
 import 'package:sari/account/view/profile/ProfilesPage.dart';
 import 'package:sari/account/view/business/BusinessRegisterPage.dart';
+import 'package:sari/product/model/product.dart';
 import 'package:sari/product/views/HomePage.dart';
 import 'package:sari/product/views/ProductView.dart';
 
@@ -114,18 +115,23 @@ class _MainState extends State<Main> {
         return HomePage(userId: userId, name: name);
       },
     ),
-    GoRoute(path: '/home', builder: (context, state) {
-      final extra = state.extra as Map<String, String>;
-      final userId = extra['userId'] ?? '';
-      final name = extra['name'] ?? '';
-      return BottomNavBar(userId: userId, name: name);
-    }),
-
+    GoRoute(
+        path: '/home',
+        builder: (context, state) {
+          final extra = state.extra as Map<String, String>;
+          final userId = extra['userId'] ?? '';
+          final name = extra['name'] ?? '';
+          return BottomNavBar(userId: userId, name: name);
+        }),
     GoRoute(
         path: '/product/view',
-        builder: (context, state) => const ProductView()),
-
-
+        builder: (context, state) {
+          final Map<String, dynamic> extra =
+              state.extra as Map<String, dynamic>;
+          final String userId = extra['userId'];
+          final ProductModel fields = extra['fields'];
+          return ProductView(userId: userId, fields: fields);
+        }),
   ]);
 
   @override
