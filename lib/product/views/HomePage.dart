@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_indicator/loading_indicator.dart';
-import 'package:logger/logger.dart';
 import 'package:sari/common/utils/theme/colors.dart';
 import 'package:sari/common/utils/theme/typography.dart';
 import 'package:sari/product/services/product.dart';
@@ -50,7 +49,7 @@ class _HomePageState extends State<HomePage> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.primaryColor,
           onPressed: () {
-            GoRouter.of(context).push('/product/add', extra: widget.userId);
+            GoRouter.of(context).push('/product/add/details', extra: widget.userId);
           },
           shape: const CircleBorder(),
           child: const Icon(Icons.add, color: AppColors.dirtyWhite),

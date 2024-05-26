@@ -29,6 +29,7 @@ class _AddProductFormState extends State<AddProductForm> {
   TextEditingController sizes = TextEditingController();
   TextEditingController types = TextEditingController();
   File? _image;
+  bool isLoading = false;
 
   Future<void> _pickImage() async {
     final ImagePicker _picker = ImagePicker();
@@ -98,7 +99,7 @@ class _AddProductFormState extends State<AddProductForm> {
                                 height: 200,
                                 color: AppColors.dirtyWhite,
                                 child: _image == null
-                                    ? const Icon(Icons.camera_alt,
+                                    ? const Icon(Icons.add_photo_alternate,
                                         size: 50, color: AppColors.textColor)
                                     : Image.file(_image!, fit: BoxFit.cover),
                               ),
@@ -201,22 +202,48 @@ class _AddProductFormState extends State<AddProductForm> {
                                     )),
                               ],
                             ),
-                            SizedBox(height: screenSize.height * 0.05),
+                            SizedBox(height: screenSize.height * 0.10),
                             SizedBox(
                               width: double.infinity,
+                              height: screenSize.height * 0.07,
                               child: ElevatedButton(
                                 onPressed: () async {
                                   if (_formKey.currentState
                                           ?.saveAndValidate() ??
                                       false) {
-                                    await _uploadImage();
+                                    // await _uploadImage();
                                     // Handle form submission logic here
+                                    var fields ={
+                                      'name': name.text,
+                                      'description': description.text,
+                                      'quantity': quantity.text,
+                                      'sizes': sizes.text,
+                                      'types': types.text
+                                    };
+
+                                    GoRouter.of(context).push('/product/add/prices', extra: {
+                                      'userId': widget.userId,
+                                      'fields': fields,
+                                    });
                                   }
                                 },
                                 style: AppForm.darkButton,
-                                child: const Text('Submit'),
+                                child: isLoading ? const CircularProgressIndicator() : const Text('NEXT', style: TextStyle(color: AppColors.dirtyWhite),),
                               ),
                             ),
+                            SizedBox(height: screenSize.height * 0.02),
+                            SizedBox(
+                              width: double.infinity,
+                              height: screenSize.height * 0.07,
+                              child: ElevatedButton(
+                                onPressed: () async {
+                                  GoRouter.of(context).pop();
+                                },
+                                style: AppForm.whiteButton,
+                                child: const Text('CANCEL', style: TextStyle(color: AppColors.primaryColor),),
+                              ),
+                            ),
+                            SizedBox(height: screenSize.height * 0.05),
                           ],
                         ),
                       ))

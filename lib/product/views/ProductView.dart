@@ -5,7 +5,7 @@ import '../model/product.dart';
 
 class ProductView extends StatefulWidget {
   final String userId;
-  final ProductModel fields;
+  final dynamic fields;
   const ProductView({super.key, required this.userId, required this.fields});
 
   @override
@@ -20,7 +20,7 @@ class _ProductViewState extends State<ProductView> {
   @override
   void initState() {
     super.initState();
-    productName = widget.fields.name;
+    productName = widget.fields['name'];
   }
 
   @override
@@ -33,19 +33,15 @@ class _ProductViewState extends State<ProductView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Product View',
+                'Product Prices',
                 style: AppTypography.heading1,
               ),
               Text(
-                'Product Name: ${widget.fields.name}',
+                'Product Name: ${widget.fields['name']}',
                 style: AppTypography.bodyText,
               ),
               Text(
-                'SRP: ${widget.fields.dp[0].toString()}',
-                style: AppTypography.bodyText,
-              ),
-              Text(
-                'Description: ${widget.fields.description}',
+                'Description: ${widget.fields['description']}',
                 style: AppTypography.bodyText,
               ),
             ],

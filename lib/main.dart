@@ -146,12 +146,21 @@ class _MainState extends State<Main> {
           return ProductView(userId: userId, fields: fields);
         }),
     GoRoute(
-        path: '/product/add',
+        path: '/product/add/details',
         builder: (context, state) {
           final extra = state.extra as String;
           final userId = extra;
 
           return AddProductForm(userId: userId);
+        }),
+    GoRoute(
+        path: '/product/add/prices',
+        builder: (context, state) {
+          final Map<String, dynamic> extra =
+              state.extra as Map<String, dynamic>;
+          final String userId = extra['userId'];
+          final dynamic fields = extra['fields'];
+          return ProductView(userId: userId, fields: fields);
         }),
   ]);
 
