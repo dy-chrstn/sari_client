@@ -10,7 +10,7 @@ Future<dynamic> loginBusinessAcc(String email, String password) async {
   // Logger().d('token: $token');
 
   try {
-    final url = Uri.parse('$baseUrl/login');
+    final url = Uri.parse('$baseUrl/business/login');
     final response = await http.post(url,
         headers: {
           'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ Future<Object> registerBusinessAcc(
   Logger().d('token: $token');
 
   try {
-    final url = Uri.parse('$baseUrl/register');
+    final url = Uri.parse('$baseUrl/business/register');
     final response = await http.post(url,
         headers: {
           'Content-Type': 'application/json',
